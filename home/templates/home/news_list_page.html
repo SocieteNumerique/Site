@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% load i18n wagtailcore_tags wagtailroutablepage_tags wagtailimages_tags %}
+
+{% block content %}
+    {% include "components/dots.html" with height=36 class='fr-mb-3w' %}
+    <div class="fr-container">
+        <h1>{{ page.title }}</h1>
+        <form class="fr-grid-row fr-mb-4w" method="GET" action="{% pageurl self %}" id="form_id">
+            {% for type in news_type %}
+                <input type="checkbox"
+                       id="{{ type }}"
+                       name="filtre"
+                       value="{{ type }}"
+                       {% if type in selected_news_type %}checked{% endif %}
+                       onclick="submit_filter()"
+                >
+                <label class="fr-tag fr-mr-1w"
+                       for="{{ type }}"
+                       {% if type in selected_news_type %}style="background-color: var(--background-action-low-blue-france);"{% endif %}
+                >{% translate type %}</label>
+            {% endfor %}
+        </form>
+        {% if news_list.paginator.count == 0 %}
+            <p class="fr-my-5w">{% translate "Aucune actualité" %}</p>
+        {% endif %}
+        <div class="fr-grid-row">
+            {% for news in news_list %}
+                {% include "components/news_card.html" with news=news news_page=page %}
+            {% endfor %}
+        </div>
+        {% if news_list.paginator.num_pages > 1 %}
+            <nav role="navigation" class="fr-pagination fr-mt-3w fr-mb-8w" aria-label="Pagination">
+                <ul class="fr-pagination__list" style="justify-content: center;">
+                    <li>
+                        <a href="?page=1" class="fr-pagination__link fr-pagination__link--first">
+                            Première page
+                        </a>
+                    </li>
+                    {% if news_list.has_previous %}
+                        <li>
+                            <a href="?page={{ news_list.previous_page_number }}" class="fr-pagination__link fr-pagination__link--prev fr-pagination__link--lg-label">
+                                Page précédente
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% for page_num in news_list.paginator.page_range %}
+                        {% if page_num|show_in_paginator:news_list %}
+                        <li>
+                            <a href="?page={{ page_num }}" class="fr-pagination__link" {% if page_num == news_list.number %} aria-current="page"{% endif %} title="Page {{ page_num }}">
+                                {{ page_num }}
+                            </a>
+                        </li>
+                        {% elif page_num|show_dots_in_paginator:news_list %}
+                            <li>
+                                <a class="fr-pagination__link fr-displayed-lg">
+                                    …
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if news_list.has_next %}
+                        <li>
+                            <a href="?page={{ news_list.next_page_number }}" class="fr-pagination__link fr-pagination__link--next fr-pagination__link--lg-label">
+                                Page suivante
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <a href="?page={{ news_list.paginator.num_pages }}" class="fr-pagination__link fr-pagination__link--last">
+                            Dernière page
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        function submit_filter(){
+            document.getElementById("form_id").submit();
+        }
+    </script>
+{% endblock %}

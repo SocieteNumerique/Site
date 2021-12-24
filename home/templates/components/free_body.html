@@ -1,0 +1,62 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="fr-grid-row fr-grid-row--center">
+    <div class="fr-col-12 fr-col-lg-10 ">
+        {% for block in body %}
+            {% if block.block_type == 'heading' %}
+                {% if forloop.counter != 1 %}
+                    {% include "components/dots.html" with height=36 class='fr-my-8w' %}
+                {% endif %}
+                <h1>{{ block.value }}</h1>
+            {% elif block.block_type == 'key_figure' %}
+                {% include "components/key_figures.html" with key_figures=block.value %}
+            {% elif block.block_type == 'pdf' %}
+                {% include "components/pdf_link.html" with pdf=block.value %}
+            {% elif block.block_type == 'quote' %}
+                {% include "components/quote.html" with quote=block.value %}
+            {% elif block.block_type == 'call_out' %}
+                <div class="fr-callout fr-fi-information-line">
+                    <p class="fr-callout__title">{{ block.value.title }}</p>
+                    <p class="fr-callout__text">
+                        {{ block.value.text }}
+                    </p>
+                    {% if block.value.button %}
+                        <a class="fr-btn" href="{{ block.value.button_link }}" aria-label="{{ block.value.button }}"{% if block.value.button_target %} target="_blank" rel="noopener"{% endif %}>
+                            {{ block.value.button }}
+                        </a>
+                    {% endif %}
+                </div>
+            {% elif block.block_type == 'highlight' %}
+                <div class="fr-highlight fr-highlight--blue-ecume fr-m-0 fr-py-3w fr-mt-3w fr-background-contrast--grey">
+                    <p class="fr-text--lg">{{ block.value }}</p>
+                </div>
+            {% elif block.block_type == 'image' %}
+                {% image block.value original as image %}
+                <img src="{{ image.url }}" class="fr-responsive-img" alt="">
+            {% elif block.block_type == 'iframe' %}
+                <div class="fr-content-media">
+                    <div style="height: {{ block.value.height }}vh; width: 100%;">
+                        <iframe title="{{ block.value.title }}" src="{{ block.value.url }}" loading="lazy" width="100%"
+                                height="100%" frameborder="0" allowfullscreen=""></iframe>
+                    </div>
+                    <div class="fr-content-media__caption">© {{ block.value.legend }}</div>
+                </div>
+            {% elif block.block_type == 'paragraph' %}
+                <section>
+                    {% if block.value.image %}
+                        {% image block.value.image max-100x100 as image %}
+                        <img src="{{ image.url }}" alt="" class="fr-mr-1w" style="float: left;">
+                    {% endif %}
+                    {% include_block block.value.paragraph %}
+                </section>
+            {% elif block.block_type == 'call_to_action' %}
+                <div class="fr-my-1w" {% if block.value.centered %} style="text-align: center;" {% endif %}>
+                    <a class="fr-btn" {% if block.value.url %} href="{{ block.value.url }}" target="_blank" {% endif %}>
+                        {{ block.value.text }}
+                    </a>
+                </div>
+
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

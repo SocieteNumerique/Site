@@ -1,0 +1,56 @@
+{{ ansible_managed | comment }}
+
+upstream app_servers {
+  server 127.0.0.1:{{ backend_application_port }};
+}
+
+server {
+
+    listen 80;
+
+    server_name {{ " ".join(public_hostnames) }};
+
+    access_log /var/log/nginx/access_{{ public_hostnames[0].replace('.', '_') }}.log;
+    error_log /var/log/nginx/error_{{ public_hostnames[0].replace('.', '_') }}.log;
+
+    # http://stackoverflow.com/questions/15238506/djangos-suspiciousoperation-invalid-http-host-header
+    # Deny illegal Host headers
+    if ($host !~* ^({{ "|".join(public_hostnames) }})$ ) {
+        return 444;
+    }
+
+    # backend static and media files are both static
+    location /static  {
+        gzip on;
+        gzip_vary on;
+        gzip_proxied expired no-cache no-store private auth;
+        gzip_types image/svg+xml text/plain text/css text/xml application/javascript text/javascript application/x-javascript application/xml;
+        gzip_disable "MSIE [1-6]\.";
+        expires 30d;
+        add_header Vary Accept-Encoding;
+        access_log off;
+        autoindex off;
+        alias {{ backend_static_path }};
+    }
+    location /media  {
+        gzip on;
+        gzip_vary on;
+        gzip_proxied expired no-cache no-store private auth;
+        gzip_types image/svg+xml text/plain text/css text/xml application/javascript text/javascript application/x-javascript application/xml;
+        gzip_disable "MSIE [1-6]\.";
+        expires 30d;
+        add_header Vary Accept-Encoding;
+        access_log off;
+        autoindex off;
+        alias {{ backend_media_path }};
+    }
+
+    location / {
+        proxy_pass         http://app_servers/;
+        proxy_redirect     off;
+        proxy_set_header   Host $host;
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Host $server_name;
+    }
+}

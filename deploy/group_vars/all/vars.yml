@@ -1,0 +1,17 @@
+---
+
+organization_slug: telescoop
+project_slug: sonum.gouv.fr
+short_project_name: sonum
+main_user: sonum
+public_hostnames:
+  - societenumerique.gouv.fr
+  - sonum.telescoop.fr
+  - sonum.tlscp.fr
+django_project_name: sonum
+backend_repo: git@gitlab.com:telescoop/anct/sonum.gouv.fr.git
+backend_application_port: 8130  # must be unique
+backend_static_path: /{{ organization_slug }}/{{ project_slug }}/backend_static
+backend_media_path: /{{ organization_slug }}/{{ project_slug }}/backend/media
+identity_file_path: /home/ubuntu/.ssh/id_rsa
+var_log_path: /var/log/{{ organization_slug }}/{{ project_slug }}

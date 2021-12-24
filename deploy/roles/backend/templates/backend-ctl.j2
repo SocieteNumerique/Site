@@ -1,0 +1,8 @@
+#!/bin/bash
+. "{{ venv.path }}/bin/activate"
+
+export DJANGO_SETTINGS_MODULE={{ django_project_name }}.settings.production
+
+pushd {{ backend_path }}
+exec {{ venv.path}}/bin/python manage.py $*
+popd

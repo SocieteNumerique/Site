@@ -1,0 +1,15 @@
+{% load static %}
+
+<div style="
+        background-image:
+        {% if gradient %}
+            linear-gradient(to bottom, rgba(255,255,255, 0), rgba(255,255,255, 100)), url('{% static "img/dots.png"%}');
+        {% else %}
+            url('{% static "img/dots.png"%}');
+        {% endif %}
+        background-repeat: repeat; background-size: 15px;
+        {% if width %}width: {{ width }};{% endif %}
+        height: {% if height %}{{ height }}{% else %}20{% endif %}px;
+"
+class="{{ class }}"
+></div>

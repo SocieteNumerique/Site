@@ -1,0 +1,28 @@
+{% load wagtailimages_tags %}
+
+<figure class="fr-quote fr-quote--column fr-my-1v {% if not quote.image %} fr-ml-6w{% endif %}">
+    <blockquote {% if quote.source_link %} cite="{{ quote.source_link }}"{% endif %}>
+        <p>« {{ quote.quote }} »</p>
+    </blockquote>
+    <figcaption>
+    {% if quote.author %}
+        <p class="fr-quote__author">{{ quote.author }}</p>
+    {% endif %}
+        <ul class="fr-quote__source">
+        {% if quote.book %}
+            <li>
+                <cite>{{ quote.book }}</cite>
+            </li>
+        {% endif %}
+            {% if quote.details %}
+                <li>{{ quote.details }}</li>
+            {% endif %}
+        </ul>
+        {% if quote.image %}
+            <div class="fr-quote__image">
+                {% image quote.image min-160x90 as quote_image %}
+                <img src="{{ quote_image.url }}" class="fr-responsive-img" alt="">
+            </div>
+        {% endif %}
+    </figcaption>
+</figure>

@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+
+{% load i18n wagtailcore_tags wagtailimages_tags scheme_tags static %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+    <div class="container-header-over-dots-gradient">
+        <div class="dots">
+            {% include "components/dots.html" with height=400 gradient=True %}
+        </div>
+        <div class="fr-container fr-px-0 fr-px-md-2w">
+            <div class="custom-blue-background fr-p-md-5w fr-p-2w fr-pb-9w fr-mt-md-6w fr-mt-0">
+                <h1 style="background: white; color: var(--text-title-blue-france); width: fit-content;" class="fr-my-1v fr-p-1w fr-display-lg">
+                    {% translate "Ecrire ensemble" %}
+                </h1>
+                <h1 style="background: var(--custom-green); color: white; width: fit-content;" class="fr-my-1v fr-p-1w fr-display-lg fr-ml-2w fr-ml-md-6w">
+                    {% translate "la société numérique" %}
+                </h1>
+                <h1 style="background: var(--custom-yellow); color: var(--text-title-blue-france); width: fit-content;" class="fr-my-1v fr-p-1w fr-display-lg fr-ml-1w fr-ml-md-3w">
+                    {% translate "de demain" %}
+                </h1>
+                <div class="fr-grid-row fr-grid-row--right home-mission-call-action">
+                    <div style="background-color: white; border: 3px solid var(--border-open-blue-france);" class="fr-p-3w fr-col-lg-6 fr-col-12">
+                        <p>{{ page.mission_call_action }}</p>
+                        <a href="{{ mission_page.url }}" class="fr-btn fr-btn--secondary fr-fi-arrow-right-line fr-btn--icon-right fr-pl-0" style="box-shadow: none;">
+                            {% translate "Notre mission" %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% include "components/dots.html" with height=36 class='fr-mb-10w' %}
+        </div>
+    </div>
+
+    {% if schemes %}
+        <div class="fr-container">
+            <div class="fr-grid-row">
+                {% for tag_type, tag_list in tags.items %}
+                    {% with selected_tags|get_value:tag_type as selected_tag_list %}
+                    <div class="fr-col-md-6 fr-col-12 fr-mt-md-10w {% if tag_type == 'who'%} fr-pr-md-5v {% else %} fr-pl-md-5v {% endif %} ">
+                        {% if tag_type == "who" %}
+                            <h2>{% translate "Je suis..." %}</h2>
+                        {% else %}
+                            <h2>{% translate "Je veux..." %}</h2>
+                        {% endif %}
+                        <p>{% translate "Cliquez sur un élément pour filtrer les dispositifs" %}</p>
+                        {% for tag in tag_list %}
+                            <p>
+                                <a class="fr-tag fr-text--lg fr-background-contrast--grey"
+                                   id="tag-{{ tag_type }}-{{ tag.id }}"
+                                   onclick="toggleTag('{{ tag_type }}', {{ tag.id }})"
+                                   style="cursor: pointer; color: var(--text-action-high-grey);">
+                                    {{ tag.localized_long_name }}
+                                </a>
+                            </p>
+                        {% endfor %}
+                    </div>
+                    {% endwith %}
+                {% endfor %}
+            </div>
+            <div>
+                <h2 id="all-schemes">{% translate "Nos dispositifs" %}</h2>
+                <h2 id="filtered-schemes" style="display: none">{% translate "Les dispositifs correspondants" %}</h2>
+                <div class="fr-grid-row">
+                    {% for scheme in schemes %}
+                        {% include "components/scheme_card.html" with scheme=scheme home_page=page class="fr-col-lg-3 fr-col-md-4" %}
+                    {% endfor %}
+                    <div class="fr-highlight" id="no-corresponding-schemes" style="display: none">
+                        <p>
+                            Aucun dispositif correspondant
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if page.news_block_title and news_promoted %}
+        {% include "components/dots.html" with height=36 class='fr-mt-10w' %}
+        <div class="fr-py-10w custom-blue-background">
+            <div class="fr-container">
+                <h1 class="fr-display-xs" style="color:white;">{{ page.news_block_title }}</h1>
+                {% if news_promoted_linked_schemes %}
+                    <div class="fr-my-7w home-news-call-out-linked-schemes">
+                        <span style="color:white; white-space: pre;">{% translate "Dispositifs liés" %} :</span>
+                        <div>
+                            {% for scheme_name in news_promoted_linked_schemes %}
+                                <p class="fr-tag fr-fi-arrow-right-line fr-tag--icon-left fr-m-1v">{{ scheme_name }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="fr-grid-row">
+                    {% for news in news_promoted %}
+                        <div class="fr-col-md-6 fr-col-12 fr-p-1w">
+                            <div class="fr-card fr-card--horizontal fr-enlarge-link fr-card--no-arrow fr-p-4w">
+                                <div class="fr-card__body">
+                                    <h4 class="fr-card__title">
+                                        <a href="{% news_page_url news_list_page news %}" class="fr-card__link">{{ news.name }}</a>
+                                    </h4>
+                                    {% if news.short_description %}
+                                        <p class="fr-card__desc">{{ news.short_description }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="fr-card__img">
+                                    {% if news.image %}
+                                        {% image news.image min-160x90 as news_image %}
+                                    {% else %}
+                                        {% image default_news_image min-160x90 as news_image %}
+                                    {% endif %}
+                                    <img src="{{ news_image.url }}" class="fr-responsive-img" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+             </div>
+        </div>
+        {% include "components/dots.html" with height=36 class='fr-mb-3w' %}
+    {% endif %}
+
+    <div class="fr-container fr-my-10w">
+        <h2>{% translate "En direct de Twitter" %}</h2>
+        <div id="tweets" class="fr-grid-row">
+            {% for i in '012'|make_list %}
+                <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
+                    <div class="fr-m-1w fr-p-3w" style="height: fit-content; box-shadow: 0px 16px 16px -16px rgba(0, 0, 0, 0.02), 0px 8px 16px rgba(0, 0, 0, 0.07);">
+                        <div class="fr-mb-3w" style="display: flex; flex-direction: row;">
+                            <img src="{% static "img/logo-societe-numerique-eclipse.svg"%}" class="fr-mr-1w">
+                            <div style="display: flex; flex-direction: column; justify-content: space-evenly;">
+                                <span id="tweet-{{ i }}-author" style="font-weight: bold;"></span>
+                                <span id="tweet-{{ i }}-username" style="color: #8E8E8E;"></span>
+                            </div>
+                        </div>
+                        <p id="tweet-{{ i }}-text"></p>
+                        <div>
+                            <img id="tweet-{{ i }}-img" style="max-width: 100%;">
+                        </div>
+                        <div class="fr-mt-1w" style="display: flex; flex-direction: row; justify-content: space-between;">
+                            <span id="tweet-{{ i }}-date" style="color: #8E8E8E;"></span>
+                            <a href="https://twitter.com/MissionSoNum" target="_blank">Twitter</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <script>get_tweets()</script>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        // parse context data into JS variables
+        const SCHEMES_WITH_TAG = JSON.parse("{{ schemes_with_tag | escapejs }}");
+        const SCHEME_IDS = JSON.parse("{{ scheme_ids | escapejs }}");
+        const TAG_IDS = JSON.parse("{{ tag_ids | escapejs }}");
+        const tagStates = {
+            who: {},
+            what: {},
+        };
+
+        function toggleTag(tagType, tagId) {
+            tagStates[tagType][tagId] = !tagStates[tagType][tagId];
+            const tagElement = document.getElementById("tag-" + tagType + "-" + tagId);
+            tagElement.classList.toggle("fr-background-contrast--grey");
+            updateSchemes();
+        }
+
+        function updateSchemes(){
+            // by default, all schemes have a false (hidden) state
+            // only schemes that have a tag that is enabled are then shown (state is true)
+            const schemeStates = {
+                who: {},
+                what: {},
+            };
+            SCHEME_IDS.forEach(function(id){schemeStates.who[id] = false; schemeStates.what[id] = false});
+
+            // loop through all tags and enable related schemes
+            let allFiltersDisabled = {
+                who: true,
+                what: true,
+            };
+            for (let tagType of ["who", "what"]) {
+                for (let tagId of TAG_IDS[tagType]) {
+                    const isTagEnabled = tagStates[tagType][tagId];
+                    if (!isTagEnabled) {
+                        continue;
+                    }
+                    allFiltersDisabled[tagType] = false;
+                    for (const schemeId of SCHEMES_WITH_TAG[tagType][tagId]) {
+                        schemeStates[tagType][schemeId] = true;
+                    }
+                }
+            }
+
+            // update DOM to show/hide the scheme cards
+            let nEnabledSchemes = 0;
+            for (const schemeId of SCHEME_IDS) {
+                const isEnabled = (
+                    (allFiltersDisabled.who || schemeStates.who[schemeId])
+                    && (allFiltersDisabled.what || schemeStates.what[schemeId])
+                );
+                const card = document.getElementById("scheme-card-" + schemeId);
+                card.style.display = isEnabled ? "block" : "none";
+                nEnabledSchemes += isEnabled;
+            }
+
+            // update DOM to show relevant title
+            const isDisplayingAll = allFiltersDisabled.who && allFiltersDisabled.what;
+            document.getElementById("all-schemes").style.display = isDisplayingAll ? "block" : "none";
+            document.getElementById("filtered-schemes").style.display = isDisplayingAll ? "none" : "block";
+            document.getElementById("no-corresponding-schemes").style.display = (nEnabledSchemes > 0) ? "none" : "block";
+        }
+
+        function show_and_hide_choose_tags(tag_type) {
+            let choose_tags = document.getElementById('home-choose-' + tag_type + '-tags');
+            let choose_tags_label = document.getElementById('checkboxes-legend-' + tag_type);
+            if (choose_tags.style.display === "block") {
+                choose_tags.style.display = "none";
+                choose_tags_label.classList.remove("hide-box-shadow");
+            } else {
+                choose_tags.style.display = "block";
+                choose_tags_label.className += ' hide-box-shadow ';
+            }
+        }
+
+        function get_tweets(){
+            let req = new XMLHttpRequest();
+            req.responseType = 'json';
+            req.open('GET', "/tweets/", true);
+            req.onload  = function() {
+               let jsonResponse = req.response;
+                display_tweets(jsonResponse.tweets);
+            };
+            req.send(null);
+        }
+
+        function display_tweets(tweets){
+            for (let i = 0; i < 3; i++) {
+                let tweetAuthor = document.getElementById("tweet-" + i + "-author");
+                tweetAuthor.innerHTML = tweets[i].author.name;
+                let tweetUsername = document.getElementById("tweet-" + i + "-username");
+                tweetUsername.innerHTML = "@" + tweets[i].author.username;
+                let tweetText = document.getElementById("tweet-" + i + "-text");
+                tweetText.innerHTML = tweets[i].text;
+                let imgText = document.getElementById("tweet-" + i + "-img");
+                if (tweets[i].image_url) {
+                    imgText.src = tweets[i].image_url;
+                } else {
+                    imgText.style.display = "none";
+                }
+                tweetText.innerHTML = tweets[i].text;
+                let tweetDate = document.getElementById("tweet-" + i + "-date");
+                let date = new Date(tweets[i].created_at);
+                const options = { year: 'numeric', month: 'short', day: 'numeric' };
+                tweetDate.innerHTML = date.toLocaleDateString('fr-FR', options);
+            }
+        }
+    </script>
+{% endblock %}

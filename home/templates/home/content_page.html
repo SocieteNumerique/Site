@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block content %}
+    {% include "components/dots.html" with height=36 class='fr-mb-3w' %}
+    <div class="fr-container fr-my-8w">
+        {% include "components/free_body.html" with body=page.body %}
+    </div>
+{% endblock %}

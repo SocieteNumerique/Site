@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% load i18n static wagtailcore_tags wagtailroutablepage_tags wagtailimages_tags %}
+
+{% block content %}
+    {% include "components/dots.html" with height=36 class='fr-mb-3w' %}
+    <div class="fr-container">
+        <nav role="navigation" class="fr-breadcrumb" aria-label="vous êtes ici :" data-fr-theme="dark">
+            <button class="fr-breadcrumb__button" aria-expanded="false" aria-controls="breadcrumb-1">Voir le fil d’Ariane</button>
+            <div class="fr-collapse" id="breadcrumb-1">
+                <ol class="fr-breadcrumb__list">
+                    <li>
+                        <a class="fr-breadcrumb__link" href="{{ news_page.url }}">{% translate "Actualités" %}</a>
+                    </li>
+                    <li>
+                        <a class="fr-breadcrumb__link" href="{{ news_page.url }}{{ news.slug }}/">{{ news.name }}</a>
+                    </li>
+                </ol>
+            </div>
+        </nav>
+        <div class="fr-grid-row fr-grid-row--center">
+            <div class="fr-col-12 fr-col-lg-10" style="text-align: center;">
+                <p class="fr-tag fr-mb-1w" style="background-color: {% if news.is_event %}var(--custom-event-color){% else %}var(--custom-news-color){% endif %}; color: white;">
+                    {% if news.is_event %}{% translate "Evènement" %}{% else %}{% translate "Actualité" %}{% endif %}
+                </p>
+                <h1 style="color: black;">
+                    {{ news.name }}
+                </h1>
+                {% if news.is_event %}
+                        <p class="fr-fi-calendar-line" style="color: var(--text-mention-grey)">{{ news.start_date|date:'d F Y' }}{% if news.end_date %} {% translate "au" %} {{ news.end_date|date:'d F Y' }}{% endif %}</p>
+                        <p style="color: var(--text-mention-grey)">
+                            <span style="content:url('{% static "img/icon-map.svg"%}'); filter: invert(43%) sepia(0%) saturate(2683%) hue-rotate(50deg) brightness(89%) contrast(93%); height: 1.5rem"></span>
+                            {{ news.place }}
+                        </p>
+                {% else %}
+                    <p style="color: var(--text-mention-grey)">{% translate "Publié le" %} {{ news.publication_date|date:'d-m-Y' }}</p>
+                {% endif %}
+                {% if news.image %}
+                    {% image news.image original as news_image %}
+                    <img src="{{ news_image.url }}" class="fr-responsive-img" alt="">
+                {% endif %}
+                {% include "components/dots.html" with height=24 class='fr-my-8w' %}
+            </div>
+        </div>
+    </div>
+
+    <div class="fr-container fr-my-8w">
+        {% include "components/free_body.html" with body=news.body %}
+        {% if news.schemes.all %}
+            <div class="fr-grid-row fr-grid-row--center">
+                <div class="fr-col-12 fr-col-lg-10 ">
+                    {% include "components/dots.html" with height=36 class='fr-my-8w' %}
+                    <h2>{% translate "Dispositifs liés" %}</h2>
+                    <div class="fr-grid-row fr-my-8w">
+                        {% for scheme in news.schemes.all %}
+                            {% include "components/scheme_card.html" with scheme=scheme home_page=home_page class="fr-col-lg-4" %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="fr-grid-row fr-grid-row--center">
+            <div class="fr-share">
+                <p class="fr-share__title" style="text-align: center;">{% translate "Partager la page" %}</p>
+                {% with news_page.full_url|add:news.slug|add:"/" as page_url %}
+                    <ul class="fr-share__group">
+                        <li>
+                            <a class="fr-share__link fr-share__link--facebook"
+                               title="Partager sur Facebook - ouvre une nouvelle fenêtre"
+                               href="https://www.facebook.com/sharer.php?u={{ page_url|urlencode }}"
+                               target="_blank"
+                               rel="noopener"
+                               onclick="window.open(this.href,'Partager sur Facebook','toolbar=no,location=yes,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=450'); event.preventDefault();"
+                            >{% translate "Partager sur Facebook"%}</a>
+                        </li>
+                        <li>
+                            <a class="fr-share__link fr-share__link--twitter"
+                               title="Partager sur Twitter - ouvre une nouvelle fenêtre"
+                               href="https://twitter.com/intent/tweet?url={{ page_url|urlencode }}&text={{ news.name }}" target="_blank" rel="noopener" onclick="window.open(this.href,'Partager sur Twitter','toolbar=no,location=yes,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=420'); event.preventDefault();"
+                            >{% translate "Partager sur Twitter"%}</a>
+                        </li>
+                        <li>
+                            <a class="fr-share__link fr-share__link--linkedin"
+                               title="Partager sur LinkedIn - ouvre une nouvelle fenêtre"
+                               href="https://www.linkedin.com/shareArticle?url={{ page_url|urlencode }}&title={{ news.name }}"
+                               target="_blank"
+                               rel="noopener"
+                               onclick="window.open(this.href,'Partager sur LinkedIn','toolbar=no,location=yes,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=550'); event.preventDefault();"
+                            >{% translate "Partager sur LinkedIn"%}</a>
+                        </li>
+                        <li>
+                            <a class="fr-share__link fr-share__link--mail"
+                               href="mailto:?subject={{ news.name }}&body={{ news.name }}: {{ news.short_description }} {{ page_url }}"
+                               title="Partager par email"
+                               target="_blank">{% translate "Partager par email"%}</a>
+                        </li>
+                        <li>
+                            <button class="fr-share__link fr-share__link--copy"
+                                    title="Copier dans le presse-papier" onclick="navigator.clipboard.writeText(window.location);alert('Adresse copiée dans le presse papier.');"
+                            >{% translate "Copier dans le presse-papier"%}</button>
+                        </li>
+                    </ul>
+                {% endwith %}
+            </div>
+        </div>
+
+    </div>
+
+    <div class="fr-container fr-my-8w">
+        {% include "components/dots.html" with height=36 class='fr-my-8w' %}
+        <h1 style="color: black;">{% translate "Actualités à voir aussi" %}</h1>
+        <div class="fr-grid-row fr-my-8w">
+            {% for other_news in other_news_list %}
+                {% include "components/news_card.html" with news=other_news news_page=news_page %}
+            {% endfor %}
+        </div>
+{#    TODO #}
+    </div>
+
+{% endblock %}

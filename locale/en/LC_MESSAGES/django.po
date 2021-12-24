@@ -1,0 +1,196 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-22 18:06+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: home/models.py:453
+msgid "title tag"
+msgstr ""
+
+#: home/models.py:457
+msgid ""
+"The name of the page displayed on search engine results as the clickable "
+"headline."
+msgstr ""
+
+#: home/models.py:461
+msgid "meta description"
+msgstr ""
+
+#: home/models.py:464
+msgid ""
+"The descriptive text displayed underneath a headline in search engine "
+"results."
+msgstr ""
+
+#: home/templates/components/news_card.html:7
+#: home/templates/home/news_page.html:24
+msgid "Evènement"
+msgstr "Event"
+
+#: home/templates/components/news_card.html:7
+#: home/templates/home/news_page.html:24
+msgid "Actualité"
+msgstr "News"
+
+#: home/templates/components/news_card.html:16
+#: home/templates/home/news_page.html:30
+msgid "au"
+msgstr "to"
+
+#: home/templates/components/pdf_link.html:5
+msgid "Document PDF"
+msgstr "PDF Document"
+
+#: home/templates/components/pdf_link.html:8
+msgid "Télécharger le PDF"
+msgstr "Download PDF"
+
+#: home/templates/home/home_page.html:15
+msgid "Ecrire ensemble"
+msgstr "Writing together"
+
+#: home/templates/home/home_page.html:18
+msgid "la société numérique"
+msgstr "the digital society"
+
+#: home/templates/home/home_page.html:21
+msgid "de demain"
+msgstr "of tomorrow"
+
+#: home/templates/home/home_page.html:27
+#: sonum/templates/components/navigation.html:18
+msgid "Notre mission"
+msgstr "Our mission"
+
+#: home/templates/home/home_page.html:42
+msgid "Je suis..."
+msgstr "I am..."
+
+#: home/templates/home/home_page.html:44
+msgid "Je veux..."
+msgstr "I want..."
+
+#: home/templates/home/home_page.html:46
+msgid "Cliquez sur un élément pour filtrer les dispositifs"
+msgstr "Click on an item to filter schemes"
+
+#: home/templates/home/home_page.html:62
+msgid "Nos dispositifs"
+msgstr "Our schemes"
+
+#: home/templates/home/home_page.html:63
+msgid "Les dispositifs correspondants"
+msgstr "Corresponding schemes"
+
+#: home/templates/home/home_page.html:79 home/templates/home/news_page.html:53
+#: home/templates/home/scheme_page.html:49
+msgid "Dispositifs liés"
+msgstr "Related Schemes"
+
+#: home/templates/home/home_page.html:117
+msgid "En direct de Twitter"
+msgstr "Live from Twitter"
+
+#: home/templates/home/mission_page.html:15
+msgid "Construire ensemble"
+msgstr "Build together"
+
+#: home/templates/home/mission_page.html:18
+msgid "un numérique"
+msgstr "a digital system"
+
+#: home/templates/home/mission_page.html:21
+msgid "d'intérêt général"
+msgstr "of general interest"
+
+#: home/templates/home/news_list_page.html:25
+msgid "Aucune actualité"
+msgstr "There is no news at the moment"
+
+#: home/templates/home/news_page.html:13
+#: sonum/templates/components/navigation.html:53
+msgid "Actualités"
+msgstr "News"
+
+#: home/templates/home/news_page.html:36
+msgid "Publié le"
+msgstr "Published on"
+
+#: home/templates/home/news_page.html:61
+msgid "Partager la page"
+msgstr "Share this page"
+
+#: home/templates/home/news_page.html:71
+msgid "Partager sur Facebook"
+msgstr "Share on Facebook"
+
+#: home/templates/home/news_page.html:78
+msgid "Partager sur Twitter"
+msgstr "Share on Twitter"
+
+#: home/templates/home/news_page.html:87
+msgid "Partager sur LinkedIn"
+msgstr "Share on LinkedIn"
+
+#: home/templates/home/news_page.html:93
+msgid "Partager par email"
+msgstr "Share by email"
+
+#: home/templates/home/news_page.html:98
+msgid "Copier dans le presse-papier"
+msgstr "Copy to clipboard"
+
+#: home/templates/home/news_page.html:109
+msgid "Actualités à voir aussi"
+msgstr "News to see also"
+
+#: sonum/templates/components/footer.html:19
+msgid ""
+"Le Programme Société Numérique de l’Agence Nationale de la Cohésion des "
+"Territoires œuvre en faveur d’un numérique d’intérêt général en offrant à "
+"tous et toutes les clés d’appropriation du numérique."
+msgstr ""
+
+#: sonum/templates/components/footer.html:40
+msgid "Accessibilité"
+msgstr "Accessibility"
+
+#: sonum/templates/components/footer.html:45
+msgid "Mentions légales"
+msgstr "Legal notices"
+
+#: sonum/templates/components/footer.html:51
+msgid "Sauf mention contraire, tous les contenus de ce site sont sous "
+msgstr "Unless stated otherwise, all content of this website are under the"
+
+#: sonum/templates/components/footer.html:53
+msgid "licence etalab-2.0"
+msgstr "etalab-2.0 license"
+
+#: sonum/templates/components/navigation.html:11
+msgid "Accueil"
+msgstr "Home"
+
+#: sonum/templates/components/navigation.html:26
+msgid "Tous les dispositifs"
+msgstr "All Schemes"
+
+#: sonum/templates/components/newsletter_and_social_networks.html:26
+msgid "Suivez-nous<br> sur les réseaux sociaux"
+msgstr "Follow us<br> on social media"

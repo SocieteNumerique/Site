@@ -1,0 +1,25 @@
+{% load wagtailimages_tags scheme_tags %}
+
+<div class="fr-col-sm-6 fr-col-12 fr-p-1w {{ class }}" id="scheme-card-{{ scheme.id }}">
+    <div class="fr-card fr-enlarge-link fr-card--grey">
+        <div class="fr-card__body {% if scheme.external_link %}scheme-external-link{% endif %}">
+            <h4 class="fr-card__title">
+                {% if scheme.external_link %}
+                    <a href="{{ scheme.external_link }}" target="_blank" class="fr-card__link ">{{ scheme.name }}</a>
+                {% else %}
+                    <a href="{% scheme_page_url home_page scheme %}" class="fr-card__link">{{ scheme.name }}</a>
+                {% endif %}
+
+            </h4>
+            <p class="fr-card__desc">{{ scheme.short_description }}</p>
+            {% for tag in scheme.for_what_tags.all %}
+                <p class="fr-tag fr-my-1v" style="width: fit-content; pointer-events: none">{{ tag.localized_name }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="fr-card__img">
+            {% image scheme.image min-160x90 as scheme_image %}
+            <img src="{{ scheme_image.url }}" class="fr-responsive-img" alt="">
+        </div>
+    </div>
+</div>

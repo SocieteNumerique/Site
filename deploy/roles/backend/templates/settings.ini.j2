@@ -1,0 +1,25 @@
+[security]
+secret_key="{{ vault_django_secret_key }}"
+allowed_hosts={{ ", ".join(public_hostnames) }}
+
+[mail]
+api_key={{ vault_mailgun_api_key }}
+
+[backup]
+backup_access={{ vault_backup_access }}
+backup_secret={{ vault_backup_secret }}
+backup_bucket={{ short_project_name }}-backup
+backup_region=eu-west-3
+
+[bugs]
+rollbar_access_token={{ vault_rollbar_access_token }}
+
+[staticfiles]
+static_root={{ backend_static_path }}
+
+[twitter]
+api_keys={{ vault_twitter_api_keys }}
+api_secret_keys={{ vault_twitter_api_secret_keys }}
+api_access_token={{ vault_twitter_api_access_token }}
+api_access_token_secret={{ vault_twitter_api_access_token_secret }}
+account_id={{ vault_twitter_account_id }}

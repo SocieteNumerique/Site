@@ -1,0 +1,33 @@
+{% load i18n static wagtailimages_tags scheme_tags %}
+
+<div class="fr-col-lg-4 fr-col-md-6 fr-col-sm-12 fr-p-1w">
+    <div class="fr-tile fr-tile--grey fr-enlarge-link fr-pb-5w {% if news.is_event %}event{% else %}news{% endif %}">
+        <div class="fr-tile__body">
+            <p class="fr-tag fr-mb-1w" style="background-color: {% if news.is_event %}var(--custom-event-color){% else %}var(--custom-news-color){% endif %}; color: white;">
+                {% if news.is_event %}{% translate "Evènement" %}{% else %}{% translate "Actualité" %}{% endif %}
+            </p>
+            <h6>
+                <a class="fr-tile__link" href="{% news_page_url news_page news %}">{{ news.name }}</a>
+            </h6>
+            {% if news.is_event %}
+                <div class="fr-tile__desc" style="text-align: start;">
+                    <div class="fr-my-5v" style="display: flex; align-items: center;">
+                        <span class="fr-fi-calendar-line fr-fi--lg"></span>
+                        <p class="fr-ml-3w">{{ news.start_date|date:'d M Y' }}{% if news.end_date %} {% translate "au" %} {{ news.end_date|date:'d M Y' }}{% endif %}</p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="fr-mx-1v" style="content:url('{% static "img/icon-map.svg"%}');"></span>
+                        <p class="fr-ml-3w">{{ news.place }}</p>
+                    </div>
+                </div>
+
+            {% elif news.short_description %}
+                <p class="fr-tile__desc">{{ news.short_description }}</p>
+            {% endif %}
+        </div>
+        <div class="fr-tile__img fr-mx-3w fr-mt-3w" style="width: auto; height: auto;">
+            {% image news.image min-160x90 as news_image %}
+            <img src="{{ news_image.url }}" class="fr-responsive-img" alt="">
+        </div>
+    </div>
+</div>

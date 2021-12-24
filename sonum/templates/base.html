@@ -1,0 +1,62 @@
+{% load static i18n wagtailcore_tags wagtailuserbar %}
+
+<!DOCTYPE html>
+<html class="no-js" data-fr-theme>
+    <head>
+        <meta charset="utf-8" />
+
+        <title>
+            {% block title %}
+                {% if seo_title %}
+                    {{ seo_title }}
+                {% else %}
+                    {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+                {% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+                {% wagtail_site as current_site %}
+                {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+            {% endblock %}
+        </title>
+        <meta name="description" content="{{ search_description }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="{% static 'dsfr/dsfr.min.css' %}">
+
+        {# Global stylesheets#}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/sonum.css' %}">
+
+        <link rel="apple-touch-icon" href="{% static 'favicon/apple-touch-icon.png' %}"><!-- 180×180 -->
+        <link rel="icon" href="{% static 'favicon/favicon.svg' %}" type="image/svg+xml">
+        <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}" type="image/x-icon"><!-- 32×32 -->
+        <link rel="manifest" href="{% static 'favicon/manifest.webmanifest' %}" crossorigin="use-credentials">
+
+        {% block extra_css %}
+            {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+        {% include "components/analytics.html" %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        {% block extra_js %}
+                {# Override this in templates to add extra javascript #}
+        {% endblock %}
+
+        {% wagtailuserbar %}
+
+        {% include "components/header.html" %}
+
+        {% block content %}{% endblock %}
+
+        {% include "components/newsletter_and_social_networks.html" %}
+
+        {% include "components/footer.html" %}
+
+        {# Global javascript #}
+{#        <script type="text/javascript" src="{% static 'js/sonum.js' %}"></script>#}
+
+        <!-- Script en version es6 module et nomodule pour les navigateurs le ne supportant pas -->
+        <script type="module" src="{% static 'dsfr/dsfr.module.min.js' %}"></script>
+        <script type="text/javascript" nomodule src="{% static 'dsfr/dsfr.nomodule.min.js' %}"></script>
+    </body>
+</html>

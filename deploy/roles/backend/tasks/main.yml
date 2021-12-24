@@ -1,0 +1,116 @@
+---
+
+- name: Install misc packages
+  apt:
+    name:
+      - sqlite3
+      - python3-venv
+      - nginx
+      - supervisor
+      - gettext
+      - memcached
+      - libmemcached-tools
+
+- name: Create main user
+  user:
+    name: "{{ main_user }}"
+    uid: 1040
+
+- name: Create directories and set permissions
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: "{{ main_user }}"
+    mode: "{{ item.mode }}"
+  loop:
+    - path: "/{{ organization_slug }}"
+      mode: '2775'
+    - path: "/{{ organization_slug }}/{{ project_slug }}"
+      mode: '2775'
+    - path: "/etc/{{ organization_slug }}"
+      mode: '2775'
+    - path: "/etc/{{ organization_slug }}/{{ project_slug }}"
+      mode: '2775'
+    - path: "{{ var_log_path }}"
+      mode: '2770'
+    - path: "{{ venv.path }}"
+      mode: '0755'
+
+- name: Create backend venv
+  command:
+    cmd: python3 -m venv --system-site-packages {{ venv.path }}
+    creates: "{{ venv.path }}/bin/python"
+  become: true
+  become_user: "{{ main_user }}"
+
+- name: Install {{ project_slug }}-ctl
+  template:
+    src: backend-ctl.j2
+    dest: "/usr/local/bin/{{ project_slug }}-ctl"
+    mode: "0755"
+
+- name: Copy django settings
+  template:
+    src: settings.ini.j2
+    dest: "/etc/{{ organization_slug }}/{{ project_slug }}/settings.ini"
+    owner: "{{ main_user }}"
+    group: devops
+    mode: 0660
+
+- name: Copy supervisord config
+  template:
+    src: supervisor.conf.j2
+    dest: "{{ supervisor_conf }}/{{ project_slug }}.conf"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install {{ project_slug }} supervisor
+  supervisorctl:
+    name: "{{ project_slug }}"
+    state: present
+
+- name: Make sure ssh key is accessible
+  file:
+    path: /home/ubuntu
+    mode: a+x
+
+- name: get latest code
+  git:
+    repo: '{{ backend_repo }}'
+    dest: "{{ backend_path }}"
+    key_file: "{{ identity_file_path }}"
+    force: true
+    version: master
+    accept_hostkey: true
+  become_user: "{{ main_user }}"
+  register: clonecode
+
+- name: Install python dependencies
+  command:
+    cmd: "{{ venv.path }}/bin/pip install -r requirements.txt"
+    chdir: "{{ backend_path }}"
+  when: clonecode.changed
+
+- name: run migrations
+  command:
+    cmd: "/usr/local/bin/{{ project_slug }}-ctl migrate"
+  when: clonecode.changed
+
+- name: collect backend static files
+  command:
+    cmd: "/usr/local/bin/{{ project_slug }}-ctl collectstatic --no-input"
+  when: clonecode.changed
+
+- name: run compilemessages
+  command:
+    cmd: "/usr/local/bin/{{ project_slug }}-ctl compilemessages"
+  when: clonecode.changed
+
+- name: Restart {{ project_slug }} supervisor
+  supervisorctl:
+    name: "{{ project_slug }}"
+    state: restarted
+  when: clonecode.changed
+
+- include: cron.yml

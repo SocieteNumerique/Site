@@ -1,0 +1,16 @@
+---
+
+- name: "daily database backup"
+  cron:
+    user: "{{ main_user }}"
+    name: "daily database backup"
+    hour: '{{ database_backup.hour }}'
+    minute: '{{ database_backup.minute }}'
+    job: "{{ venv.path }}/bin/python {{ backend_path }}/manage.py backup_db backup"
+- name: "daily media backup"
+  cron:
+    user: "{{ main_user }}"
+    name: "daily database backup"
+    hour: '{{ database_backup.hour }}'
+    minute: '{{ database_backup.minute + 10 }}'
+    job: "{{ venv.path }}/bin/python {{ backend_path }}/manage.py backup_db backup_media"

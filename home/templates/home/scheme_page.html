@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load i18n wagtailcore_tags wagtailroutablepage_tags wagtailimages_tags %}
+
+{% block content %}
+    <div class="fr-p-2w custom-blue-background">
+        <div class="fr-container">
+            <nav role="navigation" class="fr-breadcrumb" aria-label="vous êtes ici :" data-fr-theme="dark">
+                <button class="fr-breadcrumb__button" aria-expanded="false" aria-controls="breadcrumb-1">Voir le fil d’Ariane</button>
+                <div class="fr-collapse" id="breadcrumb-1">
+                    <ol class="fr-breadcrumb__list" style="color: var(--background-disabled-grey)">
+                        <li>
+                            <a class="fr-breadcrumb__link" href="{{ root_page.url }}">Accueil</a>
+                        </li>
+                        <li>
+                            <a class="fr-breadcrumb__link" href="{% pageurl page %}">{{ scheme.name }}</a>
+                        </li>
+                    </ol>
+                </div>
+            </nav>
+            <div class="fr-grid-row fr-grid-row--gutters">
+                <div class="fr-col-12 fr-col-lg-6">
+                    <h1 style="background: #FFDA2D; color: #000091" class="fr-mb-3w fr-p-1w">
+                        {{ scheme.name }}
+                    </h1>
+                    <h3 style="color: white">
+                        {{ scheme.short_description }}
+                    </h3>
+                </div>
+                <div class="fr-col-12 fr-col-lg-6">
+                    {% if scheme.youtube_video_id %}
+                        <iframe width="450" height="253" src="https://www.youtube-nocookie.com/embed/{{ scheme.youtube_video_id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    {% else %}
+                        {% image scheme.image min-400x253 as image %}
+                        <img src="{{ image.url }}" class="fr-responsive-img" alt="">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "components/dots.html" with height=36 class='fr-mb-3w' %}
+
+    <div class="fr-container fr-my-8w">
+        {% include "components/free_body.html" with body=scheme.body %}
+        {% if scheme.schemes.all %}
+            <div class="fr-grid-row fr-grid-row--center">
+                <div class="fr-col-12 fr-col-lg-10 ">
+                    {% include "components/dots.html" with height=36 class='fr-my-8w' %}
+                    <h2>{% translate "Dispositifs liés" %}</h2>
+                    <div class="fr-grid-row fr-my-8w">
+                        {% for scheme in scheme.schemes.all %}
+                            {% include "components/scheme_card.html" with scheme=scheme home_page=home_page class="fr-col-lg-3" %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% load i18n %}
+
+<div class="fr-p-4w fr-my-1v pdf-holder">
+    <div>
+        <p class="fr-tag">{% translate "Document PDF" %}</p>
+        <h4 class="fr-m-0 fr-mt-1w">{{ pdf.title }}</h4>
+    </div>
+    <a href="{{ pdf.url }}" target="_blank" class="fr-btn fr-fi-download-line fr-btn--icon-right">{% translate "Télécharger le PDF" %}</a>
+</div>
