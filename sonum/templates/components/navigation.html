@@ -1,69 +1,65 @@
 {% load static i18n wagtailcore_tags scheme_tags %}
 
-{#<div style="position:relative">#}
-{#    <div class="fr-container">#}
-        <nav class="fr-nav" id="header-navigation" role="navigation" aria-label="Menu principal">
-            <ul class="fr-nav__list">
-                <li class="fr-nav__item">
-                    <a class="fr-nav__link"
-                       href="{{ root_page.url }}"
-                       target="_self"
-                       {% if request.path == root_page.url %}aria-current="page"{% endif %}>{% translate "Accueil" %}</a>
-                </li>
-                {% if mission_page %}
-                    <li class="fr-nav__item">
-                        <a class="fr-nav__link"
-                           href="{{ mission_page.url }}"
-                           target="_self"
-                           {% if request.path == mission_page.url %}aria-current="page"{% endif %}>{% translate "Notre mission" %}</a>
-                    </li>
-                {% endif %}
-                {% if schemes %}
-                    <li class="fr-nav__item">
-                        <button class="fr-nav__btn"
-                                aria-expanded="false"
-                                aria-controls="menu-all-schemes"
-                                {% if "/dispositif/" in request.path %}aria-current="true"{% endif %}
-                        >{% translate "Tous les dispositifs" %}</button>
-                        <div class="fr-collapse fr-menu" id="menu-all-schemes">
-                            <ul class="fr-menu__list">
-                                {% for scheme in schemes %}
-                                    <li>
-                                        <a {% if scheme.external_link %}
-                                                class="fr-nav__link scheme-link-icon scheme-external-link"
-                                                href="{{ scheme.external_link }}"
-                                                target="_blank"
-                                           {% else %}
-                                                class="fr-nav__link scheme-link-icon scheme-internal-link"
-                                                href="{% scheme_page_url root_page scheme %}"
-                                                target="_self"
-                                           {% endif %}
-                                           {% if request.path == scheme_path  %}aria-current="page"{% endif %}
-                                        >
-                                            {{ scheme.name }}
-                                        </a>
-                                        </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </li>
-                {% endif %}
-                {% if news_page %}
-                    <li class="fr-nav__item">
-                        <a class="fr-nav__link"
-                           href="{{ news_page.url }}"
-                           target="_self"
-                           {% if page and page.url == news_page.url %}aria-current="page"{% endif %}>{% translate "Actualités" %}</a>
-                    </li>
-                {% endif %}
-                {% for page in pages_in_menu %}
-                    <li class="fr-nav__item">
-                        <a class="fr-nav__link" href="{{ page.url }}" target="_self"
-                            {% if request.path == page.url %}aria-current="page"{% endif %}
-                        >{{ page.title }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </nav>
-{#    </div>#}
-{#</div>#}
+<nav class="fr-nav" id="header-navigation" role="navigation" aria-label="Menu principal">
+    <ul class="fr-nav__list">
+        <li class="fr-nav__item">
+            <a class="fr-nav__link"
+               href="{{ root_page.url }}"
+               target="_self"
+               {% if request.path == root_page.url %}aria-current="page"{% endif %}>{% translate "Accueil" %}</a>
+        </li>
+        {% if mission_page %}
+            <li class="fr-nav__item">
+                <a class="fr-nav__link"
+                   href="{{ mission_page.url }}"
+                   target="_self"
+                   {% if request.path == mission_page.url %}aria-current="page"{% endif %}>{% translate "Notre mission" %}</a>
+            </li>
+        {% endif %}
+        {% if schemes %}
+            <li class="fr-nav__item">
+                <button class="fr-nav__btn"
+                        aria-expanded="false"
+                        aria-controls="menu-all-schemes"
+                        {% if "/dispositif/" in request.path %}aria-current="true"{% endif %}
+                >{% translate "Tous les dispositifs" %}</button>
+                <div class="fr-collapse fr-menu" id="menu-all-schemes">
+                    <ul class="fr-menu__list">
+                        {% for scheme in schemes %}
+                            <li>
+                                <a {% if scheme.external_link %}
+                                        class="fr-nav__link scheme-link-icon scheme-external-link"
+                                        href="{{ scheme.external_link }}"
+                                        target="_blank"
+                                   {% else %}
+                                        class="fr-nav__link scheme-link-icon scheme-internal-link"
+                                        href="{% scheme_page_url root_page scheme %}"
+                                        target="_self"
+                                   {% endif %}
+                                   {% if request.path == scheme_path  %}aria-current="page"{% endif %}
+                                >
+                                    {{ scheme.name }}
+                                </a>
+                                </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </li>
+        {% endif %}
+        {% if news_page %}
+            <li class="fr-nav__item">
+                <a class="fr-nav__link"
+                   href="{{ news_page.url }}"
+                   target="_self"
+                   {% if page and page.url == news_page.url %}aria-current="page"{% endif %}>{% translate "Actualités" %}</a>
+            </li>
+        {% endif %}
+        {% for page in pages_in_menu %}
+            <li class="fr-nav__item">
+                <a class="fr-nav__link" href="{{ page.url }}" target="_self"
+                    {% if request.path == page.url %}aria-current="page"{% endif %}
+                >{{ page.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</nav>
