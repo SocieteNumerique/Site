@@ -7,7 +7,7 @@
                 {% if scheme.external_link %}
                     <a href="{{ scheme.external_link }}" target="_blank" class="fr-card__link ">{{ scheme.name }}</a>
                 {% else %}
-                    <a href="{% scheme_page_url home_page scheme %}" class="fr-card__link">{{ scheme.name }}</a>
+                    <a href="{% scheme_page_url root_page scheme %}" class="fr-card__link">{{ scheme.name }}</a>
                 {% endif %}
 
             </h4>
