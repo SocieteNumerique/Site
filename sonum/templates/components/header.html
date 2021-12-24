@@ -55,9 +55,20 @@
                         {% endfor %}
                     {% endif %}
                 </div>
+                <div class="fr-header__navbar">
+                    <button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="menu-modal" aria-haspopup="menu" id="menu-button" title="Menu">
+                        Menu
+                    </button>
+                </div>
             </div>
         </div>
-    <hr style="border-width: 1px; border-style: ridge;">
-    {% include "components/navigation.html" %}
+    </div>
+    <div class="fr-header__menu fr-modal" id="menu-modal" aria-labelledby="menu-button">
+        <div class="fr-container">
+            <button class="fr-link--close fr-link" aria-controls="menu-modal">{% translate "Fermer" %}</button>
+            <div class="fr-header__menu-links">
+            </div>
+            {% include "components/navigation.html" %}
+        </div>
     </div>
 </header>

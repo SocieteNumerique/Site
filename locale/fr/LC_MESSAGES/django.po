@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-22 18:06+0100\n"
+"POT-Creation-Date: 2021-12-24 12:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,32 +78,32 @@ msgstr "de demain"
 msgid "Notre mission"
 msgstr "Notre mission"
 
-#: home/templates/home/home_page.html:42
+#: home/templates/home/home_page.html:43
 msgid "Je suis..."
 msgstr "Je suis..."
 
-#: home/templates/home/home_page.html:44
+#: home/templates/home/home_page.html:45
 msgid "Je veux..."
 msgstr "Je veux..."
 
-#: home/templates/home/home_page.html:46
+#: home/templates/home/home_page.html:47
 msgid "Cliquez sur un élément pour filtrer les dispositifs"
 msgstr ""
 
-#: home/templates/home/home_page.html:62
+#: home/templates/home/home_page.html:63
 msgid "Nos dispositifs"
 msgstr ""
 
-#: home/templates/home/home_page.html:63
+#: home/templates/home/home_page.html:64
 msgid "Les dispositifs correspondants"
 msgstr ""
 
-#: home/templates/home/home_page.html:79 home/templates/home/news_page.html:53
+#: home/templates/home/home_page.html:86 home/templates/home/news_page.html:53
 #: home/templates/home/scheme_page.html:49
 msgid "Dispositifs liés"
 msgstr "Dispositifs liés"
 
-#: home/templates/home/home_page.html:117
+#: home/templates/home/home_page.html:124
 msgid "En direct de Twitter"
 msgstr ""
 
@@ -124,7 +124,7 @@ msgid "Aucune actualité"
 msgstr "Il n'y a aucune actualité pour le moment"
 
 #: home/templates/home/news_page.html:13
-#: sonum/templates/components/navigation.html:53
+#: sonum/templates/components/navigation.html:56
 msgid "Actualités"
 msgstr "Actualités"
 
@@ -132,31 +132,31 @@ msgstr "Actualités"
 msgid "Publié le"
 msgstr "Publié le"
 
-#: home/templates/home/news_page.html:61
+#: home/templates/home/news_page.html:64
 msgid "Partager la page"
 msgstr "Partager la page"
 
-#: home/templates/home/news_page.html:71
+#: home/templates/home/news_page.html:74
 msgid "Partager sur Facebook"
 msgstr "Partager sur Facebook"
 
-#: home/templates/home/news_page.html:78
+#: home/templates/home/news_page.html:80
 msgid "Partager sur Twitter"
 msgstr "Partager sur Twitter"
 
-#: home/templates/home/news_page.html:87
+#: home/templates/home/news_page.html:89
 msgid "Partager sur LinkedIn"
 msgstr "Partager sur LinkedIn"
 
-#: home/templates/home/news_page.html:93
+#: home/templates/home/news_page.html:95
 msgid "Partager par email"
 msgstr "Partager par email"
 
-#: home/templates/home/news_page.html:98
+#: home/templates/home/news_page.html:100
 msgid "Copier dans le presse-papier"
 msgstr ""
 
-#: home/templates/home/news_page.html:109
+#: home/templates/home/news_page.html:111
 msgid "Actualités à voir aussi"
 msgstr "Actualités à voir aussi"
 
@@ -183,11 +183,15 @@ msgstr ""
 msgid "licence etalab-2.0"
 msgstr ""
 
+#: sonum/templates/components/header.html:68
+msgid "Fermer"
+msgstr ""
+
 #: sonum/templates/components/navigation.html:11
 msgid "Accueil"
 msgstr "Accueil"
 
-#: sonum/templates/components/navigation.html:26
+#: sonum/templates/components/navigation.html:27
 msgid "Tous les dispositifs"
 msgstr "Tous les dispositifs"
 
