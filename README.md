@@ -21,7 +21,7 @@ Lire le README correspondant à l'app Tweets
 Il y a plusieurs pages à créer dans l'admin pour un fonctionnement optimum de l'application
 Ces pages doivent être des pages filles de la HomePage
 
-- La page d'accueil slug `accueil`
+- La page d'accueil avec le slug `accueil`
 - Une page actualité avec le slug `actualite`
 - Une page notre mission avec le slug `mission`
 - Une page accessibilité avec le slug `accessibilite`
