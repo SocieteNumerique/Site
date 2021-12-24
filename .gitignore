@@ -35,7 +35,6 @@ wheels/
 # Design System download from https://gouvfr.atlassian.net/wiki/spaces/DB/pages/223019574/D+veloppeurs
 /dsfr/
 vault.key
-static
 
 # Backup
 .telescoop_backup_last_backup
