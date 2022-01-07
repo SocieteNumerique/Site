@@ -63,7 +63,7 @@ server {
 server {
     listen 80;
     server_name {{ " ".join(public_hostnames) }};
-    
+
     if ($host = sonum.tlscp.fr) {
         return 301 https://$host$request_uri;
     } # managed by Certbot

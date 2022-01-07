@@ -1,7 +1,7 @@
 {% load static i18n wagtailcore_tags scheme_tags %}
 
 <nav class="fr-nav" id="header-navigation" role="navigation" aria-label="Menu principal">
-    <ul class="fr-nav__list">
+    <ol class="fr-nav__list">
         <li class="fr-nav__item">
             <a class="fr-nav__link"
                href="{{ root_page.url }}"
@@ -24,7 +24,7 @@
                         {% if "/dispositif/" in request.path %}aria-current="true"{% endif %}
                 >{% translate "Tous les dispositifs" %}</button>
                 <div class="fr-collapse fr-menu" id="menu-all-schemes">
-                    <ul class="fr-menu__list">
+                    <ol class="fr-menu__list">
                         {% for scheme in schemes %}
                             <li>
                                 <a {% if scheme.external_link %}
@@ -42,7 +42,7 @@
                                 </a>
                                 </li>
                         {% endfor %}
-                    </ul>
+                    </ol>
                 </div>
             </li>
         {% endif %}
@@ -61,5 +61,5 @@
                 >{{ page.title }}</a>
             </li>
         {% endfor %}
-    </ul>
+    </ol>
 </nav>
