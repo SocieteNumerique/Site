@@ -18,6 +18,7 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.contrib.settings.models import BaseSetting
 from wagtail.contrib.settings.registry import register_setting
 from wagtail.core import blocks
+from wagtail.core.blocks import ListBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page, TranslatableMixin
 from wagtail.documents.blocks import DocumentChooserBlock
@@ -27,8 +28,33 @@ from wagtail.images.models import Image
 from wagtail.search import index
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
+from wagtail_localize.segments.extract import StreamFieldSegmentExtractor
+from wagtail_localize.segments.ingest import StreamFieldSegmentsWriter
 
 from home.constants import NEWS_SLUG
+
+# in wagtail-localize==1.0, StreamFieldSegmentExtractor is not able to
+# handle list blocks, so we monkey patch it.
+def custom_handle_list_block(self, list_block):
+    print("### handle_list_block", list_block)
+    segments = []
+    for block in list_block:
+        segments.extend(self.handle_block(block.block, block))
+    print("### segments", segments)
+    return segments
+
+
+StreamFieldSegmentExtractor.handle_list_block = custom_handle_list_block
+
+
+def ingestor_handle_list_block(self, list_block, segments):
+    for block_index, block in enumerate(list_block):
+        sub_segments = segments[2 * block_index : 2 * (block_index + 1)]
+        self.handle_block(block.block, block, sub_segments)
+    return list_block
+
+
+StreamFieldSegmentsWriter.handle_list_block = ingestor_handle_list_block
 
 
 class FreeBodyField(models.Model):
