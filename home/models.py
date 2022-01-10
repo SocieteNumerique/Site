@@ -472,9 +472,7 @@ class Scheme(index.Indexed, TranslatableMixin, FreeBodyField, SeoFieldsMixin):
     short_description = models.CharField(
         verbose_name="description courte", max_length=510
     )
-    slug = models.SlugField(
-        max_length=100, unique=True, verbose_name="slug (URL de l'actualité)"
-    )
+    slug = models.SlugField(max_length=100, verbose_name="slug (URL de l'actualité)")
     external_link = models.CharField(
         verbose_name="lien externe",
         blank=True,
@@ -537,9 +535,7 @@ class News(index.Indexed, TranslatableMixin, FreeBodyField, SeoFieldsMixin):
     short_description = models.CharField(
         verbose_name="description courte", max_length=510, blank=True, null=True
     )
-    slug = models.SlugField(
-        max_length=100, unique=True, verbose_name="slug (URL de l'actualité)"
-    )
+    slug = models.SlugField(max_length=100, verbose_name="slug (URL de l'actualité)")
     publication_date = models.DateTimeField(
         verbose_name="Date de publication",
         default=datetime.datetime.now,
