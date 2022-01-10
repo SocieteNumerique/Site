@@ -46,7 +46,7 @@
                     {% if page and language_code %}
                         {% for translation in page.get_translations.live %}
                             <a class="fr-link fr-fi-arrow-right-line fr-link--icon-right"
-                               href="{% pageurl translation %}"
+                               href="{{ translated_url }}"
                                rel="alternate"
                                hreflang="{{ language_code }}"
                             >

@@ -75,6 +75,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "sonum.middlewares.SearchDescriptionAndTranslationMiddleware",
 ]
 
 ROOT_URLCONF = "sonum.urls"
