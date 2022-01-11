@@ -5,22 +5,33 @@
     <div class="fr-container">
         <div class="fr-grid-row">
         {% if settings.home.NewsLetterSettings.newsLetter %}
-            <div class="fr-col-12 fr-col-md-8">
+            <div class="fr-col-12 fr-col-md-4">
                 <div class="fr-follow__newsletter">
                     <div>
-                        <h5 class="fr-h5 fr-follow__title">Abonnez-vous à notre lettre d’information</h5>
+                        <h5 class="fr-h5 fr-follow__title">{% translate "Abonnez-vous à notre lettre d’information" %}</h5>
                     </div>
                     <div>
                         <a class="fr-btn" title="S‘abonner à notre lettre d’information - ouvre une nouvelle fenêtre" href="{{ settings.home.NewsLetterSettings.newsLetter }}" target="_blank">
-                            S'abonner
+                            {% translate "S'abonner" %}
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="fr-col-12 fr-col-md-4">
+
+            <div class="fr-col-12 fr-col-md-4" style="">
             {% else %}
-            <div class="fr-col-12">
+            <div class="fr-col-12 fr-col-md-8" style="">
             {% endif %}
+                <div class="fr-follow">
+                    <p class="fr-h5 fr-mb-3v fr-mb-3v">
+                        {% translate "Informez-vous sur le labo" %}
+                    </p>
+                    <a class="fr-btn" title="Le Labo - ouvre une nouvelle fenêtre" href="https://labo.societenumerique.gouv.fr/" target="_blank">
+                        S'informer
+                    </a>
+                </div>
+            </div>
+            <div class="fr-col-12 fr-col-md-4">
                 <div class="fr-follow__social">
                     <p class="fr-h5 fr-mb-3v fr-mb-3v">
                         {% blocktrans %}Suivez-nous<br> sur les réseaux sociaux{% endblocktrans %}
