@@ -42,19 +42,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="fr-header__tools">
-                    {% if page and language_code %}
-                        {% for translation in page.get_translations.live %}
-                            <a class="fr-link fr-fi-arrow-right-line fr-link--icon-right"
-                               href="{{ translated_url }}"
-                               rel="alternate"
-                               hreflang="{{ language_code }}"
-                            >
-                                {{ translation.locale }}
-                            </a>
-                        {% endfor %}
-                    {% endif %}
-                </div>
                 <div class="fr-header__navbar">
                     <button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="menu-modal" aria-haspopup="menu" id="menu-button" title="Menu">
                         Menu
