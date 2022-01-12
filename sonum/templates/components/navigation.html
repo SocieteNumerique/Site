@@ -62,15 +62,15 @@
             </li>
         {% endfor %}
             <div style="position: absolute;
-    right: 1rem;
-    top: 0.5rem;
-    padding: 0.25rem 0 0.25rem 1rem;
-    border-left: 1px solid #e7e7e7;
-    font-size: 0.75rem;">
+                        right: 1rem;
+                        top: 0.5rem;
+                        padding: 0.25rem 0 0.25rem 1rem;
+                        border-left: 1px solid #e7e7e7;
+                        font-size: 0.75rem;">
                 {% if page and language_code %}
                     {% for translation in page.get_translations.live %}
                         <li class="">
-                            <a class="fr-link fr-fi-arrow-right-line fr-link--icon-right"
+                            <a class="fr-link"
                                href="{{ translated_url }}"
                                rel="alternate"
                                hreflang="{{ language_code }}"
