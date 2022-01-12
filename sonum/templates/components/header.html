@@ -17,7 +17,7 @@
 
                     </div>
                     <div class="fr-header__service">
-                        <a href="{{ root_page.url }}" title="Accueil - Société Numérique">
+                        <a href="{{ root_page.url }}" title="Accueil - Société Numérique" style="display: flex;">
                             <div class="fr-header__service-title">
                                 <p class="anct-title">
                                     <b>Agence</b>
@@ -26,34 +26,16 @@
                                     <br>des <b>Territoires</b>
                                 </p>
                             </div>
+                            <div class="fr-header__service-title">
+                                <p>
+                                    <img src="{% static "img/logo-societe-numerique.200.png" %}"
+                                         srcset="{% static "img/logo-societe-numerique.200.png" %},
+                                                 {% static "img/logo-societe-numerique.400.png" %} 2x"
+                                         class="sonum-logo fr-responsive-img fr-ml-2w" alt=""/>
+                                </p>
+                            </div>
                         </a>
-                        <p class="fr-header__service-tagline" style="display: none;">
-                            Permettre à tous les Français de bénéficier des opportunités offertes par le numérique en les préparant aux nouvelles compétences et aux nouveaux métiers
-                        </p>
                     </div>
-                    <div class="fr-header__service">
-                        <div class="fr-header__service-title">
-                            <p>
-                                <img src="{% static "img/logo-societe-numerique.200.png" %}"
-                                     srcset="{% static "img/logo-societe-numerique.200.png" %},
-                                             {% static "img/logo-societe-numerique.400.png" %} 2x"
-                                     class="sonum-logo fr-responsive-img fr-ml-2w" alt=""/>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="fr-header__tools">
-                    {% if page and language_code %}
-                        {% for translation in page.get_translations.live %}
-                            <a class="fr-link fr-fi-arrow-right-line fr-link--icon-right"
-                               href="{{ translated_url }}"
-                               rel="alternate"
-                               hreflang="{{ language_code }}"
-                            >
-                                {{ translation.locale }}
-                            </a>
-                        {% endfor %}
-                    {% endif %}
                 </div>
                 <div class="fr-header__navbar">
                     <button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="menu-modal" aria-haspopup="menu" id="menu-button" title="Menu">

@@ -152,8 +152,8 @@ USE_L10N = True
 USE_TZ = True
 
 WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
-    ("fr", "Version française 🇫🇷"),
-    ("en", "English version 🇬🇧"),
+    ("fr", "FR 🇫🇷"),
+    ("en", "EN 🇬🇧"),
 ]
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
