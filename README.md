@@ -52,6 +52,22 @@ Une fois la page traduite, quand des éléments sont ajoutés ou supprimer, il f
 à jour la synchronisation de la traduction en cliquant sur "Synchroniser les blocs".
 
 
+### Maintenir les liens des réseaux sociaux
+
+Pour modifier ou ajouter des liens vers des réseaux sociaux, depuis l'interface
+d'administration, aller dans l'onglet "Paramètres", puis "Comptes des réseaux sociaux"
+ou utiliser [ce lien](https://sonum.tlscp.fr/admin/settings/home/socialmediasettings/2/).
+
+![](readme-images/social-network-accounts.png)
+
+
+### Éditer le lien d'inscription à la newsletter
+
+De manière quasi-identique à ci-dessus,
+aller dans l'onglet "Paramètres", puis "Inscription à la lettre d'information"
+ou utiliser [ce lien](https://sonum.tlscp.fr/admin/settings/home/newslettersettings/2/).
+
+
 ### Pages obligatoires pour un bon fonctionnement
 
 Il y a plusieurs pages à créer dans l'admin pour un bon fonctionnement de l'application.
