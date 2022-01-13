@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-12 14:58+0100\n"
+"POT-Creation-Date: 2022-01-13 14:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -183,7 +183,7 @@ msgstr "Unless stated otherwise, all content of this website are under the"
 msgid "licence etalab-2.0"
 msgstr "etalab-2.0 license"
 
-#: sonum/templates/components/header.html:68
+#: sonum/templates/components/header.html:50
 msgid "Fermer"
 msgstr "Close"
 
@@ -204,12 +204,12 @@ msgid "S'abonner"
 msgstr "Subscribe"
 
 #: sonum/templates/components/newsletter_and_social_networks.html:27
-msgid "Informez-vous sur le labo"
-msgstr "Find out more about the Labo"
+msgid "Découvrez le Labo Société Numérique"
+msgstr "Discover the Digital Society Lab"
 
 #: sonum/templates/components/newsletter_and_social_networks.html:30
-msgid "S'informer"
-msgstr "Get informed"
+msgid "Découvrir"
+msgstr "Discover"
 
 #: sonum/templates/components/newsletter_and_social_networks.html:37
 msgid "Suivez-nous<br> sur les réseaux sociaux"
