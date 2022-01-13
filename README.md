@@ -1,25 +1,61 @@
-# Pour mettre à jour les models :
+# Site vitrine de Société Numérique
 
-    python manage.py makemigrations
-    python manage.py migrate
+## Configuration du site
 
-# Pour mettre à jour les traductions :
+La configuration se fait depuis l'interface d'aministration, accessible à cette adresse :
+https://sonum.tlscp.fr/admin/.
 
-- Créer ou mettre à jour un fichier de traductions :
-    `django-admin makemessages -l fr`
-- Renseigner à la main les traductions dans les fichiers .po autogénéré
-- Compiler les fichiers de traductions:
-    `django-admin compilemessages`
+### Pages
 
-# Utilisation de l'app django Tweets
+Depuis l'onglet de gauche Pages, sélectionner la page d'accueil ("Mission Société Numérique")
+dans la langue à configurer.
 
-Lire le README correspondant à l'app Tweets
+![](readme-images/select-home-page.png)
+
+Vous avez ensuite accès à la liste des pages. Il suffit de cliquer sur une page pour la modifier.
+
+![](readme-images/pages.png)
+
+Pour ajouter une page, il faut cliquer sur le bouton "Ajouter une sous-page".
+
+#### Rendre une page accessible depuis le menu de navigation
+
+Depuis la page d'édition, se rendre dans l'onglet "Promotion", puis cocher la case
+"Faire apparaître dans les menus".
+
+![](readme-images/show-in-menus.png)
+
+### Dispositifs et Actualités/Événements
+
+Les dispositifs et actualités ne sont pas configurés comme des pages. Pour en ajouter ou en
+modifier, choisir dans le menu de gauche l'onglet "Blocs".
+
+![](readme-images/blocs.png)
 
 
-# Pages obligatoires pour un bon fonctionnement
+### Traductions et multi-langue
 
-Il y a plusieurs pages à créer dans l'admin pour un fonctionnement optimum de l'application
-Ces pages doivent être des pages filles de la HomePage
+Aujourd'hui (janvier 2022), le site est configuré pour ne fonctionner qu'en anglais et
+français. Si une langue doit être ajoutée, cela demandera quelques ajustements technique.
+Le plus simple est de demander à TelesCoop (contact@telescoop.fr).
+
+Les pages peuvent être indépendantes dans les différentes langues, ou être les mêmes pages,
+avec des traductions. À notre avis, le plus simple est de définir toutes les pages en
+français, et traduire celles qui sont pertinentes en anglais.
+
+Pour traduire une page, un dispositif ou une actualité, il faut cliquer sur le bouton
+"Traduire" quand la souris est sur un élément.
+
+![](readme-images/translate.png)
+
+Une fois la page traduite, quand des éléments sont ajoutés ou supprimer, il faudra mettre
+à jour la synchronisation de la traduction en cliquant sur "Synchroniser les blocs".
+
+
+### Pages obligatoires pour un bon fonctionnement
+
+Il y a plusieurs pages à créer dans l'admin pour un bon fonctionnement de l'application.
+Ces pages doivent être des sous-pages de la page d'accueil (page racine).
 
 - La page d'accueil avec le slug `accueil`
 - Une page actualité avec le slug `actualite`
@@ -27,11 +63,31 @@ Ces pages doivent être des pages filles de la HomePage
 - Une page accessibilité avec le slug `accessibilite`
 - Une page mentions légales avec le slug `mentions-legales`
 
-# Images obligatoire pour un bon fonctionnement
+### Images obligatoire pour un bon fonctionnement
 
 - Une image pour les actualités dont le titre est `journal`
 
-# Système de traduction utilisé
+## Pour les développeurs
+
+### Mettre à jour la base de donnée
+
+    python manage.py makemigrations
+    python manage.py migrate
+
+### Mettre à jour les traductions :
+
+- Créer ou mettre à jour un fichier de traductions :
+    `django-admin makemessages -l fr`
+- Renseigner à la main les traductions dans les fichiers .po autogénéré
+- Compiler les fichiers de traductions:
+    `django-admin compilemessages`
+
+### Utilisation de l'app django Tweets
+
+Cf le README correspondant à l'app Tweets
+
+
+### Système de traduction utilisé
 
 Le système de traduction utilisé est [wagtail-localize](https://www.wagtail-localize.org/)
 > Attention : Si une langue est rajouté il faudra (en plus du système de base de wagtail localize) adapter le switch de langue du header
