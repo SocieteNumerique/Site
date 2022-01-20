@@ -2,7 +2,7 @@
 
 <div class="fr-col-sm-6 fr-col-12 fr-p-1w {{ class }}" id="scheme-card-{{ scheme.id }}">
     <div class="fr-card fr-enlarge-link fr-card--grey">
-        <div class="fr-card__body {% if scheme.external_link %}scheme-external-link{% endif %}">
+        <div class="fr-card__body {% if scheme.external_link %}external_link{% endif %}">
             <h4 class="fr-card__title">
                 {% if scheme.external_link %}
                     <a href="{{ scheme.external_link }}" target="_blank" class="fr-card__link ">{{ scheme.name }}</a>

@@ -59,10 +59,10 @@ p.fr-tag {
     }
 }
 
-.scheme-external-link:after {
+.external_link:after {
     content: "" !important;
 }
-.scheme-internal-link:after {
+.internal-link:after {
     content: "";
 }
 .scheme-link-icon:after {
@@ -72,6 +72,9 @@ p.fr-tag {
     margin-top: auto;
     margin-left: auto;
     float: right;
+}
+.labo_link_white:after {
+    color: white !important;
 }
 
 .hide-box-shadow {
