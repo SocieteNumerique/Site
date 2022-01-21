@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-24 12:24+0100\n"
+"POT-Creation-Date: 2022-01-13 14:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,21 +18,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: home/models.py:453
+#: home/models.py:479
 msgid "title tag"
 msgstr ""
 
-#: home/models.py:457
+#: home/models.py:483
 msgid ""
 "The name of the page displayed on search engine results as the clickable "
 "headline."
 msgstr ""
 
-#: home/models.py:461
+#: home/models.py:487
 msgid "meta description"
 msgstr ""
 
-#: home/models.py:464
+#: home/models.py:490
 msgid ""
 "The descriptive text displayed underneath a headline in search engine "
 "results."
@@ -74,7 +74,7 @@ msgid "de demain"
 msgstr "of tomorrow"
 
 #: home/templates/home/home_page.html:27
-#: sonum/templates/components/navigation.html:18
+#: sonum/templates/components/navigation.html:16
 msgid "Notre mission"
 msgstr "Our mission"
 
@@ -124,7 +124,7 @@ msgid "Aucune actualité"
 msgstr "There is no news at the moment"
 
 #: home/templates/home/news_page.html:13
-#: sonum/templates/components/navigation.html:56
+#: sonum/templates/components/navigation.html:54
 msgid "Actualités"
 msgstr "News"
 
@@ -183,18 +183,34 @@ msgstr "Unless stated otherwise, all content of this website are under the"
 msgid "licence etalab-2.0"
 msgstr "etalab-2.0 license"
 
-#: sonum/templates/components/header.html:68
+#: sonum/templates/components/header.html:50
 msgid "Fermer"
 msgstr "Close"
 
-#: sonum/templates/components/navigation.html:11
+#: sonum/templates/components/navigation.html:9
 msgid "Accueil"
 msgstr "Home"
 
-#: sonum/templates/components/navigation.html:27
+#: sonum/templates/components/navigation.html:25
 msgid "Tous les dispositifs"
 msgstr "All Schemes"
 
-#: sonum/templates/components/newsletter_and_social_networks.html:26
+#: sonum/templates/components/newsletter_and_social_networks.html:11
+msgid "Abonnez-vous à notre lettre d’information"
+msgstr "Subscribe to our newsletter"
+
+#: sonum/templates/components/newsletter_and_social_networks.html:15
+msgid "S'abonner"
+msgstr "Subscribe"
+
+#: sonum/templates/components/newsletter_and_social_networks.html:27
+msgid "Découvrez le Labo Société Numérique"
+msgstr "Discover the Digital Society Lab"
+
+#: sonum/templates/components/newsletter_and_social_networks.html:30
+msgid "Découvrir"
+msgstr "Discover"
+
+#: sonum/templates/components/newsletter_and_social_networks.html:37
 msgid "Suivez-nous<br> sur les réseaux sociaux"
 msgstr "Follow us<br> on social media"
