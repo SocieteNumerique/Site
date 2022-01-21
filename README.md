@@ -68,6 +68,22 @@ aller dans l'onglet "Paramètres", puis "Inscription à la lettre d'information"
 ou utiliser [ce lien](https://sonum.tlscp.fr/admin/settings/home/newslettersettings/2/).
 
 
+### Editer le lien vers le Labo Société Numérique ainsi que sa règle d'affichage
+
+De manière quasi-identique à ci-dessus,
+aller dans l'onglet "Paramètres", puis "Labo Société Numérique" et indiquer le lien du Labo
+
+Deux options d'affichage de la promotion du labo sont possibles :
+- Ajout d'un bouton d'accès dans le bandeau des réseaux sociaux et de l'inscription à la newsletter.
+Dans ce cas il faut cocher la case "Afficher dans le bandeaux des réseaux sociaux ?"
+- Ajout d'un encart de promotion du Labo sur la page d'accueil.
+Dans ce cas il faut aller modifier directement la page d'accueil
+et renseigner les champs correspondants.
+Si le champ "Titre pour la mise en avant du Labo" n'est pas renseigné,
+alors l'encart ne s'affichera pas.
+
+Il est possible de n'utiliser aucune des deux possibilités ou bien les deux en même temps.
+
 ### Pages obligatoires pour un bon fonctionnement
 
 Il y a plusieurs pages à créer dans l'admin pour un bon fonctionnement de l'application.
