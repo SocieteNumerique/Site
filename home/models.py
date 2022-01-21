@@ -546,7 +546,12 @@ class Scheme(index.Indexed, TranslatableMixin, FreeBodyField, SeoFieldsMixin):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    youtube_video_id = models.CharField(max_length=15, null=True, blank=True)
+    youtube_video_id = models.CharField(
+        max_length=15,
+        null=True,
+        blank=True,
+        help_text="Indiquer ici seulement l'id de la video youtube, celui-ci est indiqué dans l'url après 'v='. Exemple : pour https://www.youtube.com/watch?v=e0N0QbWES2o renseigner e0N0QbWES2o",
+    )
 
     for_what_tags = models.ManyToManyField(
         ForWhatTag, blank=True, verbose_name="Tags 'Pour quoi?'"
