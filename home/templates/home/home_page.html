@@ -147,6 +147,26 @@
         </div>
         <script>get_tweets()</script>
     </div>
+
+    {% if page.labo_block_title and settings.home.LaboSettings.labo_link %}
+        <div class="fr-container fr-py-10w">
+            <h2>{{ page.labo_block_title }}</h2>
+            <div class="fr-card fr-card--horizontal fr-enlarge-link">
+                <div class="fr-card__body external_link custom-blue-background labo_link_white">
+                   <h4 class="fr-card__title fr-display-xs" style="color: white;">
+                       <a href="{{ settings.home.LaboSettings.labo_link }}" class="fr-card__link" target="_blank">{{ page.labo_tagline }}</a>
+                   </h4>
+                   <p class="fr-card__desc" style="color: white;">{{ page.labo_description }}</p>
+                </div>
+                {% if page.labo_image %}
+                    <div class="fr-card__img">
+                        {% image page.labo_image min-160x90 as labo_image %}
+                       <img src="{{ labo_image.url }}" class="fr-responsive-img" alt="" style="border: 2px solid #e7e7e7; border-right: 0;">
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% block extra_js %}

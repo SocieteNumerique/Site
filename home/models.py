@@ -18,7 +18,6 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.contrib.settings.models import BaseSetting
 from wagtail.contrib.settings.registry import register_setting
 from wagtail.core import blocks
-from wagtail.core.blocks import ListBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page, TranslatableMixin
 from wagtail.documents.blocks import DocumentChooserBlock
@@ -32,6 +31,7 @@ from wagtail_localize.segments.extract import StreamFieldSegmentExtractor
 from wagtail_localize.segments.ingest import StreamFieldSegmentsWriter
 
 from home.constants import NEWS_SLUG
+
 
 # in wagtail-localize==1.0, StreamFieldSegmentExtractor is not able to
 # handle list blocks, so we monkey patch it.
@@ -49,7 +49,7 @@ StreamFieldSegmentExtractor.handle_list_block = custom_handle_list_block
 
 def ingestor_handle_list_block(self, list_block, segments):
     for block_index, block in enumerate(list_block):
-        sub_segments = segments[2 * block_index : 2 * (block_index + 1)]
+        sub_segments = segments[2 * block_index : 2 * (block_index + 1)]  # noqa: E203
         self.handle_block(block.block, block, sub_segments)
     return list_block
 
@@ -238,6 +238,30 @@ class HomePage(RoutablePageMixin, Page):
         help_text="Deuxième actualité à mettre en avant sur la page d'accueil",
     )
 
+    labo_block_title = models.CharField(
+        blank=True,
+        verbose_name="titre pour la mise en avant du Labo",
+        max_length=255,
+        help_text="Si ce champ est vide, la mise en avant du Labo ne s'affichera pas sur l'accueil",
+    )
+
+    labo_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        verbose_name="Image pour la mise en avant du Labo",
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    labo_tagline = models.CharField(
+        blank=True, verbose_name="Slogan / Titre du Labo", max_length=255
+    )
+
+    labo_description = models.CharField(
+        blank=True, verbose_name="Description du Labo", max_length=510
+    )
+
     content_panels = Page.content_panels + [
         FieldPanel("mission_call_action"),
         MultiFieldPanel(
@@ -247,6 +271,15 @@ class HomePage(RoutablePageMixin, Page):
                 SnippetChooserPanel("news_second"),
             ],
             heading="Mise en avant d'actualités",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("labo_block_title"),
+                ImageChooserPanel("labo_image"),
+                FieldPanel("labo_tagline"),
+                FieldPanel("labo_description"),
+            ],
+            heading="Mise en avant du Labo",
         ),
     ]
 
@@ -664,3 +697,19 @@ class NewsLetterSettings(BaseSetting):
 
     class Meta:
         verbose_name = "Inscription à la lettre d'information"
+
+
+@register_setting
+class LaboSettings(BaseSetting):
+    labo_link = models.URLField(
+        help_text="Lien vers le Labo Société Numérique",
+        max_length=300,
+        blank=True,
+        null=True,
+    )
+    in_social_network_banner = models.BooleanField(
+        default=False, verbose_name="Afficher dans le bandeaux des réseaux sociaux ?"
+    )
+
+    class Meta:
+        verbose_name = "Labo Société Numérique"

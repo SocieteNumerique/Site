@@ -28,11 +28,11 @@
                         {% for scheme in schemes %}
                             <li>
                                 <a {% if scheme.external_link %}
-                                        class="fr-nav__link scheme-link-icon scheme-external-link"
+                                        class="fr-nav__link scheme-link-icon external_link"
                                         href="{{ scheme.external_link }}"
                                         target="_blank"
                                    {% else %}
-                                        class="fr-nav__link scheme-link-icon scheme-internal-link"
+                                        class="fr-nav__link scheme-link-icon internal-link"
                                         href="{% scheme_page_url root_page scheme %}"
                                         target="_self"
                                    {% endif %}
