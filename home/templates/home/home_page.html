@@ -105,9 +105,9 @@
                                 </div>
                                 <div class="fr-card__img">
                                     {% if news.image %}
-                                        {% image news.image min-160x90 as news_image %}
+                                        {% image news.image min-320x180 as news_image %}
                                     {% else %}
-                                        {% image default_news_image min-160x90 as news_image %}
+                                        {% image default_news_image min-320x180 as news_image %}
                                     {% endif %}
                                     <img src="{{ news_image.url }}" class="fr-responsive-img" alt="">
                                 </div>
@@ -160,7 +160,7 @@
                 </div>
                 {% if page.labo_image %}
                     <div class="fr-card__img">
-                        {% image page.labo_image min-160x90 as labo_image %}
+                        {% image page.labo_image min-400x300 as labo_image %}
                        <img src="{{ labo_image.url }}" class="fr-responsive-img" alt="" style="border: 2px solid #e7e7e7; border-right: 0;">
                     </div>
                 {% endif %}

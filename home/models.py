@@ -72,6 +72,18 @@ class FreeBodyField(models.Model):
                             ),
                         ),
                         (
+                            "dimension",
+                            blocks.ChoiceBlock(
+                                choices=[
+                                    ("small", "Petite"),
+                                    ("medium", "Moyenne"),
+                                    ("big", "Grande"),
+                                ],
+                                required=False,
+                                help_text="Choisir la dimension de l'image",
+                            ),
+                        ),
+                        (
                             "paragraph",
                             blocks.RichTextBlock(
                                 label="paragraphe",

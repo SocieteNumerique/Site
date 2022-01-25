@@ -44,8 +44,14 @@
             {% elif block.block_type == 'paragraph' %}
                 <section>
                     {% if block.value.image %}
-                        {% image block.value.image max-100x100 as image %}
-                        <img src="{{ image.url }}" alt="" class="fr-mr-1w" style="float: left;">
+                        {% if block.value.dimension == 'small' %}
+                            {% image block.value.image  max-150x150 as image %}
+                        {% elif block.value.dimension == 'medium' %}
+                            {% image block.value.image  max-300x300 as image %}
+                        {% else %}
+                            {% image block.value.image  max-450x450 as image %}
+                        {% endif %}
+                        <img src="{{ image.url }}" alt="" class="fr-mr-1w" style="float: left; max-width: 100%">
                     {% endif %}
                     {% include_block block.value.paragraph %}
                 </section>

@@ -20,7 +20,7 @@
         </ul>
         {% if quote.image %}
             <div class="fr-quote__image">
-                {% image quote.image min-160x90 as quote_image %}
+                {% image quote.image min-320x180 as quote_image %}
                 <img src="{{ quote_image.url }}" class="fr-responsive-img" alt="">
             </div>
         {% endif %}
