@@ -66,7 +66,7 @@ class SearchDescriptionAndTranslationMiddleware:
             if context.get("news").search_description:
                 description = context.get("news").search_description
         elif context.get("page"):
-            page_translation = context.get("page").get_translations().live()[0]
+            page_translation = context.get("page").get_translations()[0]
             if page_translation:
                 translated_url = page_translation.url
             if context.get("page").search_description:
