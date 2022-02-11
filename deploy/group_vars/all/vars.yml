@@ -9,7 +9,7 @@ public_hostnames:
   - sonum.telescoop.fr
   - sonum.tlscp.fr
 django_project_name: sonum
-backend_repo: git@gitlab.com:telescoop-public/sonum.gouv.fr.git
+backend_repo: git@github.com:SocieteNumerique/Site.git
 backend_application_port: 8130  # must be unique
 backend_static_path: /{{ organization_slug }}/{{ project_slug }}/backend_static
 backend_media_path: /{{ organization_slug }}/{{ project_slug }}/backend/media
