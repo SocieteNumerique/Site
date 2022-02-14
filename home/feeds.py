@@ -6,7 +6,7 @@ from home.templatetags.scheme_tags import news_page_url
 
 class LatestNewsFeed(Feed):
     title = "News"
-    link = "/rss/actualite"
+    link = "/rss/news"
     description = "Notifications lors de modification ou d'ajout de nouveaux évènement et actualité dans le comtpte de Société Numérique."
     description_template = "feeds/news.html"
 

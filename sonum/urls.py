@@ -22,7 +22,7 @@ urlpatterns = [
     path("tweets/", tweets_views.get_tweets, name="get_tweets"),
     path("backup/", include("telescoop_backup.urls")),
     path("cache/clear", clear_cache),
-    path("latest/feed/", LatestNewsFeed()),
+    path("feed/news/latest", LatestNewsFeed()),
 ]
 
 
