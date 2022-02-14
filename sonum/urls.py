@@ -7,6 +7,7 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
+from home.feeds import LatestNewsFeed
 from search import views as search_views
 from sonum.views import clear_cache
 from tweets import views as tweets_views
@@ -21,6 +22,7 @@ urlpatterns = [
     path("tweets/", tweets_views.get_tweets, name="get_tweets"),
     path("backup/", include("telescoop_backup.urls")),
     path("cache/clear", clear_cache),
+    path("latest/feed/", LatestNewsFeed()),
 ]
 
 
