@@ -1,3 +1,8 @@
 {% if obj.short_description %}{{ obj.short_description }}{% endif %}
-{% if obj.is_event %}{% if obj.end_date %}Dates : {{ obj.start_date|date:'d F Y' }} - {{ obj.end_date|date:'d F Y' }}{% else %}Date : {{ obj.start_date|date:'d F Y' }}{% endif %}{% endif %}
+<br/>
+{% if obj.is_event %}
+    {% if obj.end_date %}Dates : {{ obj.start_date|date:'d F Y' }} - {{ obj.end_date|date:'d F Y' }}
+    {% else %}Date : {{ obj.start_date|date:'d F Y' }}{% endif %}
+{% endif %}
+<br/>
 {% if obj.place %}Lieu : {{ obj.place }}{% endif %}

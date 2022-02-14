@@ -99,6 +99,11 @@ Ces pages doivent être des sous-pages de la page d'accueil (page racine).
 
 - Une image pour les actualités dont le titre est `journal`
 
+## Inscription au flux rss des actualités et des évènements
+
+Le lien : https://sonum.tlscp.fr/feed/news/latest permet de s'inscrire au flux rss permettant de recevoir
+les nouvelles actualités et évènements publié sur le site Société Numérique.
+
 ## Pour les développeurs
 
 ### Mettre à jour la base de donnée
