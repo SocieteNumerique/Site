@@ -423,7 +423,7 @@ class NewsListPage(RoutablePageMixin, Page):
     def access_news_page(self, request, news_slug):
         try:
             news = News.objects.get(slug=news_slug, locale_id=self.locale_id)
-        except News.DoesNotExist:
+        except (News.DoesNotExist, News.MultipleObjectsReturned):
             raise Http404
         return self.render(
             request,
