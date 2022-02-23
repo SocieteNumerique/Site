@@ -128,3 +128,7 @@ Cf le README correspondant à l'app Tweets
 
 Le système de traduction utilisé est [wagtail-localize](https://www.wagtail-localize.org/)
 > Attention : Si une langue est rajouté il faudra (en plus du système de base de wagtail localize) adapter le switch de langue du header
+
+### Dsfr - design système
+
+Nous avons modifié le dsfr.module.min.js pour supprimer la possibilité d'avoir le thème sombre. En cas de mise à jour du DSFR, il faudra le re-faire. Regarder notamment où se trouve le texte `prefers-color-scheme`.
