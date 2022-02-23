@@ -5,6 +5,7 @@ from typing import List
 from django import forms
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import models
+from django.http import Http404
 from django.utils import translation
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalManyToManyField
@@ -420,7 +421,10 @@ class NewsListPage(RoutablePageMixin, Page):
 
     @route(r"^(.*)/$", name="news")
     def access_news_page(self, request, news_slug):
-        news = News.objects.get(slug=news_slug, locale_id=self.locale_id)
+        try:
+            news = News.objects.get(slug=news_slug, locale_id=self.locale_id)
+        except News.DoesNotExist:
+            raise Http404
         return self.render(
             request,
             context_overrides={
