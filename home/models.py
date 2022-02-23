@@ -420,7 +420,7 @@ class NewsListPage(RoutablePageMixin, Page):
 
     @route(r"^(.*)/$", name="news")
     def access_news_page(self, request, news_slug):
-        news = News.objects.get(slug=news_slug)
+        news = News.objects.get(slug=news_slug, locale_id=self.locale_id)
         return self.render(
             request,
             context_overrides={
