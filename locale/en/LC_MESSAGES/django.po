@@ -109,15 +109,15 @@ msgstr "Live from Twitter"
 
 #: home/templates/home/mission_page.html:15
 msgid "Construire ensemble"
-msgstr "Build together"
+msgstr "Leveraging"
 
 #: home/templates/home/mission_page.html:18
 msgid "un numérique"
-msgstr "a digital system"
+msgstr "digital for"
 
 #: home/templates/home/mission_page.html:21
 msgid "d'intérêt général"
-msgstr "of general interest"
+msgstr "general interest!"
 
 #: home/templates/home/news_list_page.html:25
 msgid "Aucune actualité"
