@@ -5,8 +5,8 @@ project_slug: sonum.gouv.fr
 short_project_name: sonum
 main_user: sonum
 public_hostnames:
+  - www.societenumerique.gouv.fr
   - societenumerique.gouv.fr
-  - sonum.telescoop.fr
   - sonum.tlscp.fr
 django_project_name: sonum
 backend_repo: git@github.com:SocieteNumerique/Site.git

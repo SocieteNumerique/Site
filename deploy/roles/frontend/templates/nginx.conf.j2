@@ -24,6 +24,10 @@ server {
         return 444;
     }
 
+    if ($host = www.societenumerique.gouv.fr) {
+        return 301 https://societenumerique.gouv.fr$request_uri;
+    } # managed by Certbot
+
     # backend static and media files are both static
     location /static  {
         gzip on;
@@ -68,6 +72,15 @@ server {
 
     if ($host = sonum.tlscp.fr) {
         return 301 https://$host$request_uri;
+    } # managed by Certbot
+    server_name {{ " ".join(public_hostnames) }};
+
+    if ($host = societenumerique.gouv.fr) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = www.societenumerique.gouv.fr) {
+        return 301 https://societenumerique.gouv.fr$request_uri;
     } # managed by Certbot
 
     return 404; # managed by Certbot

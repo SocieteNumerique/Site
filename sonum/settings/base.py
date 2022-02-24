@@ -206,3 +206,10 @@ BACKUP_ACCESS = config.getstr("backup.backup_access", None)
 BACKUP_SECRET = config.getstr("backup.backup_secret", None)
 BACKUP_BUCKET = config.getstr("backup.backup_bucket", None)
 BACKUP_REGION = config.getstr("backup.backup_region", None)
+
+WAGTAILLOCALIZE_MACHINE_TRANSLATOR = {
+    "CLASS": "home.translation.Translator",
+    "OPTIONS": {
+        "AUTH_KEY": config.getstr("translation.deepl_key"),
+    },
+}
