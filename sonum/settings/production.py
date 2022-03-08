@@ -35,7 +35,7 @@ MIDDLEWARE.append(  # noqa: F405
     "rollbar.contrib.django.middleware.RollbarNotifierMiddleware"
 )
 ROLLBAR = {
-    "access_token": "1650e242bbc04ef68e7f93923fcaa157",
+    "access_token": config.getstr("bugs.rollbar_access_token"),  # noqa: F405
     "environment": "production",
     "root": BASE_DIR,  # noqa: F405
 }
