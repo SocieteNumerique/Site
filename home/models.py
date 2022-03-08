@@ -676,7 +676,7 @@ class News(index.Indexed, TranslatableMixin, FreeBodyField, SeoFieldsMixin):
     class Meta(TranslatableMixin.Meta):
         verbose_name_plural = "Actualités / Evènements"
         verbose_name = "Actualité / Evènement"
-        ordering = ["publication_date"]
+        ordering = ["-publication_date"]
 
     def __init__(self, *args, **kwargs):
         """Fixes a bug when trying to translate."""
