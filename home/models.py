@@ -5,7 +5,7 @@ from typing import List
 from django import forms
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import models
-from django.http import Http404
+from django.shortcuts import redirect
 from django.utils import translation
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalManyToManyField
@@ -367,7 +367,11 @@ class HomePage(RoutablePageMixin, Page):
 
     @route(r"^dispositif/(.*)/$", name="scheme")
     def access_scheme_page(self, request, slug):
-        scheme = Scheme.objects.get(slug=slug)
+        try:
+            scheme = Scheme.objects.get(slug=slug, locale_id=self.locale_id)
+        except (Scheme.DoesNotExist, Scheme.MultipleObjectsReturned):
+            language = translation.get_language()
+            return redirect(f"/{language}/")
         return self.render(
             request,
             context_overrides={
@@ -424,7 +428,8 @@ class NewsListPage(RoutablePageMixin, Page):
         try:
             news = News.objects.get(slug=news_slug, locale_id=self.locale_id)
         except (News.DoesNotExist, News.MultipleObjectsReturned):
-            raise Http404
+            language = translation.get_language()
+            return redirect(f"/{language}/actualite/")
         return self.render(
             request,
             context_overrides={
