@@ -103,6 +103,8 @@ def serialize_tweet(tweet, includes):
             "name": author["name"],
             "username": author["username"],
         },
-        "text": transform_text(current_tweet["text"], current_tweet["entities"]),
+        "text": transform_text(
+            current_tweet["text"], current_tweet.get("entities") or {}
+        ),
         "image_url": get_image_url(tweet, includes),
     }
