@@ -122,7 +122,7 @@ p.fr-tag {
     font-weight: 400;
 }
 .sonum-logo {
-    max-width: 200px;
+    height: 100px;
 }
 .pdf-holder {
     display: flex;
