@@ -44,9 +44,13 @@
 
         {% wagtailuserbar %}
 
+        {% include "components/skip_links.html" %}
+
         {% include "components/header.html" %}
 
-        {% block content %}{% endblock %}
+        <main role="main" id="contenu" tabindex="-1">
+            {% block content %}{% endblock %}
+        </main>
 
         {% include "components/newsletter_and_social_networks.html" %}
 
