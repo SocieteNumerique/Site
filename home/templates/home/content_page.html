@@ -5,8 +5,16 @@
 {% block content %}
     {% include "components/dots.html" with height=36 class='fr-mb-3w' %}
     <div class="fr-container fr-my-8w">
-        {# TODO : make h1 taking in account in heanding structure (not working like that) #}
-        <h1 style="display:none;">{{page.title}}</h1>
+        <h1 id="content-page-h1" class="fr-sr-only">{{ page.title }}</h1>
         {% include "components/free_body.html" with body=page.body %}
     </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // hide page title if there is already a title
+  if (document.getElementsByTagName('h1').length > 1) {
+      document.getElementById('content-page-h1').style.display = 'none';
+  }
+</script>
 {% endblock %}
