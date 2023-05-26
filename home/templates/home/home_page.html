@@ -11,14 +11,16 @@
         </div>
         <div class="fr-container fr-px-0 fr-px-md-2w">
             <div class="custom-blue-background fr-p-md-5w fr-p-2w fr-pb-9w fr-mt-md-6w fr-mt-0">
-                <h1 style="background: white; color: var(--text-title-blue-france); width: fit-content;" class="fr-my-1v fr-p-1w fr-display-lg">
-                    {% translate "Ecrire ensemble" %}
-                </h1>
-                <h1 style="background: var(--custom-green); color: white; width: fit-content;" class="fr-my-1v fr-p-1w fr-display-lg fr-ml-2w fr-ml-md-6w">
-                    {% translate "la société numérique" %}
-                </h1>
-                <h1 style="background: var(--custom-yellow); color: var(--text-title-blue-france); width: fit-content;" class="fr-my-1v fr-p-1w fr-display-lg fr-ml-1w fr-ml-md-3w">
-                    {% translate "de demain" %}
+                <h1 class="fr-display-lg">
+                    <span style="background: white; color: var(--text-title-blue-france);" class="fr-my-1v fr-p-1w span-stylized-title">
+                        {% translate "Ecrire ensemble" %}
+                    </span>
+                    <span style="background: var(--custom-green); color: white;" class="fr-my-1v fr-p-1w fr-ml-2w fr-ml-md-6w span-stylized-title">
+                        {% translate "la société numérique" %}
+                    </span>
+                    <span style="background: var(--custom-yellow); color: var(--text-title-blue-france);" class="fr-my-1v fr-p-1w fr-ml-1w fr-ml-md-3w span-stylized-title">
+                        {% translate "de demain" %}
+                    </span>
                 </h1>
                 <div class="fr-grid-row fr-grid-row--right home-mission-call-action">
                     <div style="background-color: white; border: 3px solid var(--border-open-blue-france);" class="fr-p-3w fr-col-lg-6 fr-col-12">
@@ -80,7 +82,7 @@
         {% include "components/dots.html" with height=36 class='fr-mt-10w' %}
         <div class="fr-py-10w custom-blue-background">
             <div class="fr-container">
-                <h1 class="fr-display-xs" style="color:white;">{{ page.news_block_title }}</h1>
+                <h2 class="fr-display-xs" style="color:white;">{{ page.news_block_title }}</h2>
                 {% if news_promoted_linked_schemes %}
                     <div class="fr-my-7w home-news-call-out-linked-schemes">
                         <span style="color:white; white-space: pre;">{% translate "Dispositifs liés" %} :</span>

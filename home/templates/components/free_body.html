@@ -7,7 +7,7 @@
                 {% if forloop.counter != 1 %}
                     {% include "components/dots.html" with height=36 class='fr-my-8w' %}
                 {% endif %}
-                <h1>{{ block.value }}</h1>
+                <h2 class="fr-h1 text-blue">{{ block.value }}</h2>
             {% elif block.block_type == 'key_figure' %}
                 {% include "components/key_figures.html" with key_figures=block.value %}
             {% elif block.block_type == 'pdf' %}
