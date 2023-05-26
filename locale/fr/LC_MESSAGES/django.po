@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-22 17:49+0100\n"
+"POT-Creation-Date: 2023-05-26 11:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,7 +78,7 @@ msgid "de demain"
 msgstr "de demain"
 
 #: home/templates/home/home_page.html:29
-#: sonum/templates/components/navigation.html:16
+#: sonum/templates/components/navigation.html:17
 msgid "Notre mission"
 msgstr "Notre mission"
 
@@ -128,7 +128,7 @@ msgid "Aucune actualité"
 msgstr "Il n'y a aucune actualité pour le moment"
 
 #: home/templates/home/news_page.html:13
-#: sonum/templates/components/navigation.html:54
+#: sonum/templates/components/navigation.html:55
 msgid "Actualités"
 msgstr "Actualités"
 
@@ -191,11 +191,11 @@ msgstr ""
 msgid "Fermer"
 msgstr ""
 
-#: sonum/templates/components/navigation.html:9
+#: sonum/templates/components/navigation.html:10
 msgid "Accueil"
 msgstr "Accueil"
 
-#: sonum/templates/components/navigation.html:25
+#: sonum/templates/components/navigation.html:26
 msgid "Tous les dispositifs"
 msgstr "Tous les dispositifs"
 
