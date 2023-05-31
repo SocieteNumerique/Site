@@ -75,6 +75,11 @@
     path: /home/ubuntu
     mode: a+x
 
+- name: Make sure ssh key is accessible
+  file:
+    path: /home/ubuntu/.ssh
+    mode: a+x
+
 - name: get latest code
   git:
     repo: '{{ backend_repo }}'
