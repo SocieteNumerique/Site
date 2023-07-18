@@ -122,34 +122,6 @@
         {% include "components/dots.html" with height=36 class='fr-mb-3w' %}
     {% endif %}
 
-    <div class="fr-container fr-my-10w">
-        <h2>{% translate "En direct de Twitter" %}</h2>
-        <div id="tweets" class="fr-grid-row">
-            {% for i in '012'|make_list %}
-                <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
-                    <div class="fr-m-1w fr-p-3w" style="height: fit-content; box-shadow: 0px 16px 16px -16px rgba(0, 0, 0, 0.02), 0px 8px 16px rgba(0, 0, 0, 0.07);">
-                        <div class="fr-mb-3w" style="display: flex; flex-direction: row;">
-                            <img src="{% static "img/logo-anct.svg"%}" class="fr-mr-1w" alt="" style="width: 75px">
-                            <div style="display: flex; flex-direction: column; justify-content: space-evenly;">
-                                <span id="tweet-{{ i }}-author" style="font-weight: bold;"></span>
-                                <span id="tweet-{{ i }}-username" style="color: #8E8E8E;"></span>
-                            </div>
-                        </div>
-                        <p id="tweet-{{ i }}-text"></p>
-                        <div>
-                            <img id="tweet-{{ i }}-img" style="max-width: 100%;" alt="">
-                        </div>
-                        <div class="fr-mt-1w" style="display: flex; flex-direction: row; justify-content: space-between;">
-                            <span id="tweet-{{ i }}-date" style="color: #8E8E8E;"></span>
-                            <a href="https://twitter.com/MissionSoNum" target="_blank">Twitter</a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-        <script>get_tweets()</script>
-    </div>
-
     {% if page.labo_block_title and settings.home.LaboSettings.labo_link %}
         <div class="fr-container fr-py-10w">
             <h2>{{ page.labo_block_title }}</h2>
@@ -244,39 +216,6 @@
             } else {
                 choose_tags.style.display = "block";
                 choose_tags_label.className += ' hide-box-shadow ';
-            }
-        }
-
-        function get_tweets(){
-            let req = new XMLHttpRequest();
-            req.responseType = 'json';
-            req.open('GET', "/tweets/", true);
-            req.onload  = function() {
-               let jsonResponse = req.response;
-                display_tweets(jsonResponse.tweets);
-            };
-            req.send(null);
-        }
-
-        function display_tweets(tweets){
-            for (let i = 0; i < 3; i++) {
-                let tweetAuthor = document.getElementById("tweet-" + i + "-author");
-                tweetAuthor.innerHTML = tweets[i].author.name;
-                let tweetUsername = document.getElementById("tweet-" + i + "-username");
-                tweetUsername.innerHTML = "@" + tweets[i].author.username;
-                let tweetText = document.getElementById("tweet-" + i + "-text");
-                tweetText.innerHTML = tweets[i].text;
-                let imgText = document.getElementById("tweet-" + i + "-img");
-                if (tweets[i].image_url) {
-                    imgText.src = tweets[i].image_url;
-                } else {
-                    imgText.style.display = "none";
-                }
-                tweetText.innerHTML = tweets[i].text;
-                let tweetDate = document.getElementById("tweet-" + i + "-date");
-                let date = new Date(tweets[i].created_at);
-                const options = { year: 'numeric', month: 'short', day: 'numeric' };
-                tweetDate.innerHTML = date.toLocaleDateString('fr-FR', options);
             }
         }
     </script>
