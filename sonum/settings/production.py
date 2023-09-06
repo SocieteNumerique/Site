@@ -40,3 +40,13 @@ ROLLBAR = {
     "root": BASE_DIR,  # noqa: F405
 }
 rollbar.init(**ROLLBAR)
+
+
+def ignore_handler(payload, **_):
+    if payload["data"]["level"] == "warning":
+        return False
+    else:
+        return payload
+
+
+rollbar.events.add_payload_handler(ignore_handler)
